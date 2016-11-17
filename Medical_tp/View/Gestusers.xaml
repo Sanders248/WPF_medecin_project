@@ -15,6 +15,7 @@
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35" />

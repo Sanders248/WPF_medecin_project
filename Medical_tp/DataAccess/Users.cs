@@ -29,9 +29,9 @@ namespace Medical_tp.DataAccess
         /// charge les users
         /// </summary>
         private void LoadUsers()
-        {
-            foreach (ServiceUser.User u in serviceClient.GetListUser())
-                _listUser.Add(u);
+        {   
+                foreach (ServiceUser.User u in serviceClient.GetListUser())
+                    _listUser.Add(u);
         }
 
         public List<ServiceUser.User> getUsers()

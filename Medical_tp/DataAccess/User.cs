@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,8 +28,15 @@ namespace Medical_tp.DataAccess
             //     _User = serviceClient.GetUser(login);
 
             if ((connected = serviceClient.Connect(login, pwd)) == true)
-                connected = true;
+            {
+               /* OperationContext operationContext = OperationContext.Current;
+                InstanceContext instanceContext = operationContext.InstanceContext;
+                ServiceLive.ServiceLiveClient live = new ServiceLive.ServiceLiveClient(instanceContext);
 
+                live.Subscribe();*/
+
+                connected = true;
+            }
             return connected;
         }
 
