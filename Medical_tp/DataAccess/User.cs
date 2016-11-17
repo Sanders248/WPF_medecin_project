@@ -24,19 +24,8 @@ namespace Medical_tp.DataAccess
 
         public bool connexion(string login, string pwd)
         {
-            //if ((connected = serviceClient.Connect(login, pwd)) == true)
-            //     _User = serviceClient.GetUser(login);
 
-            if ((connected = serviceClient.Connect(login, pwd)) == true)
-            {
-               /* OperationContext operationContext = OperationContext.Current;
-                InstanceContext instanceContext = operationContext.InstanceContext;
-                ServiceLive.ServiceLiveClient live = new ServiceLive.ServiceLiveClient(instanceContext);
-
-                live.Subscribe();*/
-
-                connected = true;
-            }
+            connected = serviceClient.Connect(login, pwd);
             return connected;
         }
 

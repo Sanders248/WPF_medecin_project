@@ -1,0 +1,17 @@
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Medical_tp\obj\Debug\Medical_tp.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Medical_tp\obj\Debug\View\Gestusers.g.cs
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Medical_tp\obj\Debug\View\LoginView.g.cs
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Medical_tp\obj\Debug\App.g.cs
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Medical_tp\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Medical_tp\obj\Debug\Medical_tp_MarkupCompile.cache
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Medical_tp\obj\Debug\Medical_tp_MarkupCompile.lref
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Medical_tp\bin\Debug\Medical_tp.exe.config
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Medical_tp\bin\Debug\Medical_tp.exe
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Medical_tp\bin\Debug\Medical_tp.pdb
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Medical_tp\obj\Debug\View\Gestusers.baml
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Medical_tp\obj\Debug\View\LoginView.baml
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Medical_tp\obj\Debug\Medical_tp.g.resources
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Medical_tp\obj\Debug\Medical_tp.Properties.Resources.resources
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Medical_tp\obj\Debug\Medical_tp.csproj.GenerateResource.Cache
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Medical_tp\obj\Debug\Medical_tp.exe
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Medical_tp\obj\Debug\Medical_tp.pdb
