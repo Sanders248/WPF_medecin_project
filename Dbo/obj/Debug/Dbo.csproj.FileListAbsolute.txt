@@ -1,5 +1,5 @@
-C:\Users\Alex\Desktop\WPF\Dbo\bin\Debug\Dbo.dll
-C:\Users\Alex\Desktop\WPF\Dbo\bin\Debug\Dbo.pdb
-C:\Users\Alex\Desktop\WPF\Dbo\obj\Debug\Dbo.csprojResolveAssemblyReference.cache
-C:\Users\Alex\Desktop\WPF\Dbo\obj\Debug\Dbo.dll
-C:\Users\Alex\Desktop\WPF\Dbo\obj\Debug\Dbo.pdb
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Dbo\bin\Debug\Dbo.dll
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Dbo\bin\Debug\Dbo.pdb
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Dbo\obj\Debug\Dbo.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Dbo\obj\Debug\Dbo.dll
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Dbo\obj\Debug\Dbo.pdb

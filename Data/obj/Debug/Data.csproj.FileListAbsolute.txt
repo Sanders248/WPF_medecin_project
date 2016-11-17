@@ -1,0 +1,9 @@
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Data\bin\Debug\Data.dll
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Data\bin\Debug\Data.pdb
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Data\bin\Debug\Dbo.dll
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Data\bin\Debug\Interfaces.dll
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Data\bin\Debug\Dbo.pdb
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Data\bin\Debug\Interfaces.pdb
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Data\obj\Debug\Data.dll
+C:\Users\Alex\Desktop\WPF\WPF_medecin_project\Data\obj\Debug\Data.pdb
