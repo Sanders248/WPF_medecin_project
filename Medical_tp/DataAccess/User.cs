@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,6 +24,7 @@ namespace Medical_tp.DataAccess
 
         public bool connexion(string login, string pwd)
         {
+
             connected = serviceClient.Connect(login, pwd);
             return connected;
         }

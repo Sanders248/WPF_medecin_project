@@ -29,15 +29,11 @@ namespace Medical_tp.DataAccess
         /// <summary>
         /// charge les users
         /// </summary>
-        private async void LoadUsers()
-        {
 
-                
-                BasicHttpBinding binding = new BasicHttpBinding();
-                binding.MaxReceivedMessageSize = 65536 * 2;
-                ServiceUser.User[] users =  serviceClient.GetListUser();
-               
-          
+        private void LoadUsers()
+        {   
+                foreach (ServiceUser.User u in serviceClient.GetListUser())
+                    _listUser.Add(u);
         }
 
         public List<ServiceUser.User> getUsers()

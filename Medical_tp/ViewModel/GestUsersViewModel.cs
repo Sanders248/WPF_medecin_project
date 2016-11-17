@@ -72,7 +72,6 @@ namespace Medical_tp.ViewModel
             get { return _listUser; }
             set
             {
-
                 if (_listUser != value)
                 {
                     _listUser = value;
@@ -105,7 +104,6 @@ namespace Medical_tp.ViewModel
         {
             DisplayName = "Display User";
 
-            //instancie la dataAccess pour avoir accès aux fichiers XML
             _dataAccessPerson = new Medical_tp.DataAccess.Users();
             //chargement des personnes
             List<ServiceUser.User> tmpList = _dataAccessPerson.getUsers();
