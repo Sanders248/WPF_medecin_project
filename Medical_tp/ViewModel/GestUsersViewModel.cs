@@ -19,6 +19,7 @@ namespace Medical_tp.ViewModel
         #endregion
 
         private ICommand _addCommand;
+        private ICommand _modifyCommand;
 
 
         #region getter / setter
@@ -30,6 +31,12 @@ namespace Medical_tp.ViewModel
         {
             get { return _addCommand; }
             set { _addCommand = value; }
+        }
+
+        public ICommand ModifyCommand
+        {
+            get { return _modifyCommand; }
+            set { _modifyCommand = value; }
         }
 
         /// <summary>
@@ -123,5 +130,10 @@ namespace Medical_tp.ViewModel
             _listUser.Add(new Medical_tp.ServiceUser.User() { Name = "New", Firstname = "New", Login = "" });
         }
 
+      /*  private void ModifyCommand()
+        {
+            _listUser.
+        }
+        */
     }
 }

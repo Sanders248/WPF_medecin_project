@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Medical_tp.View"
         mc:Ignorable="d"
-        Title="Gestusers" Height="300" Width="300" xmlns:Behaviours="clr-namespace:Medical_tp">
+        Title="Gestusers" Height="476.695" Width="858.051" xmlns:Behaviours="clr-namespace:Medical_tp">
     <Window.Resources>
         <DataTemplate x:Key="dtListUser">
             <StackPanel Orientation="Horizontal">
@@ -45,5 +45,7 @@
             <TextBox Height="20" Text="{Binding SearchPattern, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
         <Button Grid.Row="4" Command="{Binding AddCommand}" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">Add</Button>
+
+        <Button Grid.Row="3" Command="{Binding ModifyCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="2.875,0.462" Grid.Column="2" Margin="35,34,305,116">Modify</Button>
     </Grid>
 </Window>
