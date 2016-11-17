@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace Medical_tp.DataAccess
         /// <summary>
         /// liste des utilisateurs
         /// </summary>
-        private List<ServiceUser.User> _listUser = null; // warning be sure that is correct
+        private List<ServiceUser.User> _listUser = new List<ServiceUser.User>(); // warning be sure that is correct
         public static ServiceUser.ServiceUserClient serviceClient = new ServiceUser.ServiceUserClient();
 
         /// <summary>
@@ -21,17 +22,22 @@ namespace Medical_tp.DataAccess
         {
             //init variables
             //  _listUser = new List<Medical_tp.Model.User>();
-            _listUser = new List<ServiceUser.User>();
+            
             LoadUsers();
         }
 
         /// <summary>
         /// charge les users
         /// </summary>
-        private void LoadUsers()
+        private async void LoadUsers()
         {
-            foreach (ServiceUser.User u in serviceClient.GetListUser())
-                _listUser.Add(u);
+
+                
+                BasicHttpBinding binding = new BasicHttpBinding();
+                binding.MaxReceivedMessageSize = 65536 * 2;
+                ServiceUser.User[] users =  serviceClient.GetListUser();
+               
+          
         }
 
         public List<ServiceUser.User> getUsers()
