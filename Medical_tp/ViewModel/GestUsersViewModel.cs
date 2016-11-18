@@ -71,12 +71,12 @@ namespace Medical_tp.ViewModel
                     System.ComponentModel.ICollectionView myView = CollectionViewSource.GetDefaultView(ListUser);
                     myView.Filter = (item) =>
                     {
-                        if (item as ServiceUser.User == null)
+                        if (item as Model.User == null)
                             return false;
 
-                        ServiceUser.User personView = (ServiceUser.User)item;
-                        if (personView.Firstname.Contains(value) ||
-                            personView.Name.Contains(value))
+                        Model.User personView = (Model.User)item;
+                        if (personView.Firstname.ToLower().Contains(value.ToLower()) ||
+                            personView.Name.ToLower().Contains(value.ToLower()))
                             return true;
 
                         return false;
