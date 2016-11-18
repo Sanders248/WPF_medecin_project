@@ -10,11 +10,7 @@ namespace Medical_tp.DataAccess
     class User
     {
         public static ServiceUser.ServiceUserClient serviceClient = new ServiceUser.ServiceUserClient();
-       // private ServiceUser.User _User = null; // warning be sure that is the correct way
-
-        /// <summary>
-        /// construteur
-        /// </summary>
+      
         public User()
         {
         }
