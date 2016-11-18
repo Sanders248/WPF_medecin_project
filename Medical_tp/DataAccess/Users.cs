@@ -24,37 +24,46 @@ namespace Medical_tp.DataAccess
             LoadUsers();
         }
 
-        //todo think to update the index when delete add, move elmts
-        public void updateUser(int index)
+        private bool checkUniqLogin(Model.User testUser)
         {
-            ServiceUser.User u = null;
-            try
-            {
-                u = serviceClient.GetListUser()[index];
-            }
-            catch
-            { }
-            if (u != null)
-            {
-                string previousLogin = u.Login;
+            if (testUser.RefLogin.Equals(testUser.Login))
+                return true;
 
-                serviceClient.DeleteUser(previousLogin);
+            foreach (ServiceUser.User u in serviceClient.GetListUser())
+                if (u.Login == testUser.Login)
+                    return false;
 
-                ServiceUser.User servUsr = new ServiceUser.User();
-                servUsr.Firstname = _listUser[index].Firstname;
-                servUsr.Login = _listUser[index].Login;
-                servUsr.Name = _listUser[index].Name;
-                servUsr.Picture = _listUser[index].Picture;
-                servUsr.Pwd = _listUser[index].Pwd;
-                servUsr.Role = _listUser[index].Role;
-
-                serviceClient.AddUser(servUsr);
-            }
+            return true;
         }
 
+        //todo check the login is unique !!
+        public bool updateUser(Model.User user)
+        {
+            if (!checkUniqLogin(user))
+                return false;
+
+            user.RefLogin = user.Login;
+
+            serviceClient.DeleteUser(user.RefLogin);
+
+            ServiceUser.User servUsr = new ServiceUser.User();
+
+            servUsr.Firstname = user.Firstname;
+            servUsr.Login = user.Login;
+            servUsr.Name = user.Name;
+            servUsr.Picture = user.Picture;
+            servUsr.Pwd = user.Pwd;
+            servUsr.Role = user.Role;
+
+            serviceClient.AddUser(servUsr);
+
+            return true;
+        }
+        
         public Model.User addNewUser()
         {
-            Model.User u = new Model.User(_listUser.Capacity);
+            Model.User u = new Model.User();
+
             _listUser.Add(u);
 
             ServiceUser.User servUsr = new ServiceUser.User();
@@ -75,6 +84,7 @@ namespace Medical_tp.DataAccess
             try
             {
                 serviceClient.DeleteUser(user.Login);
+               
                 _listUser.Remove(user);
             }
             catch
@@ -83,14 +93,10 @@ namespace Medical_tp.DataAccess
 
         private void LoadUsers()
         {
-            int i = 0;
             try
             {
                 foreach (ServiceUser.User u in serviceClient.GetListUser())
-                {
-                    _listUser.Add(new Model.User(u.Login, u.Pwd, u.Name, u.Firstname, u.Picture, u.Role, u.Connected, i));
-                    ++i;
-                }
+                    _listUser.Add(new Model.User(u.Login, u.Pwd, u.Name, u.Firstname, u.Picture, u.Role, u.Connected));
             }
             catch
             {

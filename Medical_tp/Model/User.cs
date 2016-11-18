@@ -16,10 +16,10 @@ namespace Medical_tp.Model
         private Byte[] _picture;
         private string _role;
         private bool _connected;
-        private int _id;
+        private string _refLogin;
         #endregion
 
-        public User(string login, string pwd, string name, string firstname, Byte[] picture, string role, bool connected, int id)
+        public User(string login, string pwd, string name, string firstname, Byte[] picture, string role, bool connected)
         {
             _login = login;
             _pwd = pwd;
@@ -28,19 +28,22 @@ namespace Medical_tp.Model
             _picture = picture;
             _role = role;
             _connected = connected;
-            _id = id;
+            _refLogin = login;
         }
 
-        public User(int id)
+        //todo add an sha1 or md5 on datetimelogin
+        public User()
         {
-            _login = "Unknow";
+            string newLogin = "newLogin_" +  DateTime.Now.ToString();
+
+            _login = newLogin;
+            _refLogin = newLogin;
             _pwd = "";
             _name = "Unknow";
             _firstname = "Unknow";
             _picture = null;
             _role = "Undefined";
             _connected = false;
-            _id = id;
         }
 
         public string Login
@@ -85,9 +88,10 @@ namespace Medical_tp.Model
             set { _connected = value; }
         }
 
-        public int Index
+        public string RefLogin
         {
-            get { return _id; }
+            get { return _refLogin; }
+            set { _refLogin = value; }
         }
 
     }

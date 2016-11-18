@@ -161,12 +161,10 @@ namespace Medical_tp.ViewModel
 
         private void change_image()
         {
-
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.DefaultExt = ".png";
             dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.JPG)|*.jpg|GIF Files (*.gif)|*.gif";
             Nullable<bool> result = dlg.ShowDialog();
-
             
             if (result == true)
             {
@@ -200,9 +198,9 @@ namespace Medical_tp.ViewModel
         private void DeletePerson()
         {
             //maybe do in in xaml
-            _listUser.Remove(SelectedUser);
-
             users.removeUser(SelectedUser);
+
+            _listUser.Remove(SelectedUser);
         }
 
 
@@ -230,7 +228,8 @@ namespace Medical_tp.ViewModel
         {
             try
             {
-                users.updateUser(SelectedUser.Index);
+                if (!users.updateUser(SelectedUser))
+                    return; //error when updating a new user -> poppup login allready exist
             }
             catch
             {

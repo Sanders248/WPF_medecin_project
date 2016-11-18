@@ -27,7 +27,7 @@ namespace Medical_tp.DataAccess
         //todo see what happend when we add a enw user then modify it
         public void updateUser(Model.User user)
         {
-            ServiceUser.User u = serviceClient.GetListUser()[user.Index];
+            ServiceUser.User u = serviceClient.GetUser(user.RefLogin);
             string previousLogin = u.Login;
 
             if (!u.Firstname.Equals(user.Firstname))
