@@ -31,9 +31,16 @@ namespace Medical_tp.DataAccess
         /// </summary>
 
         private void LoadUsers()
-        {   
+        {
+            try
+            {
                 foreach (ServiceUser.User u in serviceClient.GetListUser())
                     _listUser.Add(u);
+            }
+            catch
+            {
+
+            }
         }
 
         public List<ServiceUser.User> getUsers()

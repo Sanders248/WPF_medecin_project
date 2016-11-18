@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Medical_tp.View"
         mc:Ignorable="d"
-        Title="Gestusers" Height="476.695" Width="858.051" xmlns:Behaviours="clr-namespace:Medical_tp">
+        Title="Accueil" Height="476.695" Width="858.051" xmlns:Behaviours="clr-namespace:Medical_tp">
     <Window.Resources>
         <DataTemplate x:Key="dtListUser">
             <StackPanel Orientation="Horizontal">
@@ -17,6 +17,9 @@
     </Window.Resources>
 
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/View/Ressources/main-page-Bg.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="35" />
             <RowDefinition Height="35" />
@@ -26,26 +29,26 @@
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="230" />
-            <ColumnDefinition Width="100*" />
-            <ColumnDefinition Width="159.684*" />
+            <ColumnDefinition Width="242" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="211" />
         </Grid.ColumnDefinitions>
         <!--propriété à true pour pouvoir utiliser la collectionview-->
-        <ListBox Grid.RowSpan="4" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource dtListUser}" ItemsSource="{Binding ListUser}" SelectedItem="{Binding SelectedUser, Mode=TwoWay}"></ListBox>
+        <ListBox Grid.RowSpan="3" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource dtListUser}" ItemsSource="{Binding ListUser}" SelectedItem="{Binding SelectedUser, Mode=TwoWay}" Margin="4,9,2,0" Grid.Row="1"/>
 
-        <TextBlock Grid.Column="1" Grid.Row="0">Name :</TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="1">Firstname :</TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="2">Age :</TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Width="68" Margin="0,22,8,12" Grid.RowSpan="2">Name :</TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Width="68" Margin="0,23,8,13" Grid.RowSpan="2">Firstname :</TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Width="68" Margin="0,22,8,147" Grid.RowSpan="2">Age :</TextBlock>
 
-        <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding SelectedUser.Name}"></TextBox>
-        <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding SelectedUser.Firstname}"></TextBox>
-        <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding SelectedUser.Login}"></TextBox>
-        <StackPanel Grid.Row="3" >
-            <TextBlock Text="Search : "></TextBlock>
-            <TextBox Height="20" Text="{Binding SearchPattern, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        </StackPanel>
-        <Button Grid.Row="4" Command="{Binding AddCommand}" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">Add</Button>
+        <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding SelectedUser.Name}" Margin="2,22,7,12" Grid.RowSpan="2"/>
+        <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding SelectedUser.Firstname}" Margin="2,23,7,13" Grid.RowSpan="2"/>
+        <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding SelectedUser.Login}" Margin="2,22,7,147" Grid.RowSpan="2"/>
+        <StackPanel Grid.Row="3" />
+        <Button Grid.Row="4" Command="{Binding AddCommand}" Margin="96,3,2,0" Height="20" VerticalAlignment="Top">Add</Button>
 
-        <Button Grid.Row="3" Command="{Binding ModifyCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="2.875,0.462" Grid.Column="2" Margin="35,34,305,116">Modify</Button>
+        <Button Grid.Row="3" Command="{Binding ModifyCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.875,0.462" Grid.Column="2" Margin="1,32,0,0" Width="122" Height="20">Modify</Button>
+        <TextBlock Text="Search : " Margin="4,5,2,14"/>
+        <TextBox Text="{Binding SearchPattern, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="3,20,3,30" Grid.RowSpan="2"/>
+        <Image x:Name="image" Source="{Binding DisplayedImage}" Grid.Column="1" Margin="0,25,90,63" Grid.RowSpan="4" HorizontalAlignment="Right" Width="168"/>
     </Grid>
 </Window>

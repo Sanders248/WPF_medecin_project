@@ -24,8 +24,12 @@ namespace Medical_tp.DataAccess
 
         public bool connexion(string login, string pwd)
         {
-
-            connected = serviceClient.Connect(login, pwd);
+            try
+            {
+                connected = serviceClient.Connect(login, pwd);
+            }
+            catch {
+            }
             return connected;
         }
 
