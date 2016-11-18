@@ -8,8 +8,8 @@ namespace Medical_tp.DataAccess
 {
     class Patients
     {
-        //todo
-       /* private List<Model.Patient> _listPatient;
+       
+        private List<Model.Patient> _listPatient;
         public static ServicePatient.ServicePatientClient servicePatient = new ServicePatient.ServicePatientClient();
 
         public Patients()
@@ -18,24 +18,23 @@ namespace Medical_tp.DataAccess
             LoadPatients();
         }
        
-                public Observation(DateTime date, string comment, string[] prescription, Byte[][] picture, int weight, int bloodPressure)
+        private void LoadPatients()
+        {
+            foreach (ServicePatient.Patient p in servicePatient.GetListPatient())
+            {
+                List<Model.Observation> obsList = new List<Model.Observation>();
 
+                foreach (ServicePatient.Observation o in p.Observations)
+                    obsList.Add(new Model.Observation(o.Date, o.Comment, o.Prescription, o.Pictures, o.Weight, o.BloodPressure));
 
+                _listPatient.Add(new Model.Patient(p.Name, p.Firstname, p.Birthday, p.Id, obsList));
+            }
+        }
 
-                private void LoadPatients()
-                {
-                    foreach (ServicePatient.Patient p in servicePatient.GetListPatient())
-                    {
-                        _listPatient.Add(new Model.Patient(p.Name, p.Firstname, p.Birthday, p.Id, 
-                            new Model.Observation(p.Observations);
-                    }
-                }
+        public List<Model.Patient> getPatients()
+        {
+            return _listPatient;
+        }
 
-                public List<Model.Patient> getUsers()
-                {
-                    return _listPatient;
-                }
-
-            */
     }
 }

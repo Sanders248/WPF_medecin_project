@@ -18,7 +18,6 @@ namespace Medical_tp.ViewModel
         private Model.User _selectedUser;
         private DataAccess.Users users;
         private ObservableCollection<Model.User> _listUser = null;
-        private DataAccess.Users _dataAccessPerson;
         private string _searchPattern;
         private ImageSource _DisplayedImage;
        
@@ -27,21 +26,22 @@ namespace Medical_tp.ViewModel
         private ICommand _addCommand;
         private ICommand _modifyCommand;
         private ICommand _changeImage;
+        private ICommand _deleteCommand;       
 
 
         #region getter / setter
-
-        /// <summary>
-        /// command pour ajouter une personne
-        /// </summary>
-
-
+        
         public ImageSource DisplayedImage
         {
             get { return _DisplayedImage; }
             set { _DisplayedImage = value; }
         }
 
+        public ICommand DeleteCommand
+        {
+            get { return _deleteCommand; }
+            set { _deleteCommand = value; }
+        }
 
         public ICommand AddCommand
         {
@@ -142,20 +142,16 @@ namespace Medical_tp.ViewModel
         public GestUsersViewModel()
         {
             DisplayName = "Display User";
-            
-            _dataAccessPerson = new Medical_tp.DataAccess.Users();
-            //chargement des personnes
-
 
             users = new DataAccess.Users();
 
             //transformation en Observable collection pour l'interface
             ListUser = new ObservableCollection<Medical_tp.Model.User>(users.getUsers());
-           
 
             //configuration de la commande
             AddCommand = new RelayCommand(param => AddPerson());
             ModifyCommand = new RelayCommand(param => ModifyPerson());
+            DeleteCommand = new RelayCommand(param => DeletePerson());
             changeImage = new RelayCommand(param => change_image());
         }
 
@@ -195,8 +191,20 @@ namespace Medical_tp.ViewModel
         private void AddPerson()
         {
             _listUser.Add(users.addNewUser());
+
+            //allow to verify change from user on service // Delete this after verification
+            //  ServiceUser.ServiceUserClient serviceClient = new ServiceUser.ServiceUserClient();
+            //  ServiceUser.User[] us = serviceClient.GetListUser();
         }
-    
+
+        private void DeletePerson()
+        {
+            //maybe do in in xaml
+            _listUser.Remove(SelectedUser);
+
+            users.removeUser(SelectedUser);
+        }
+
 
         private static BitmapImage LoadImage(byte[] imageData)
         {
@@ -218,10 +226,15 @@ namespace Medical_tp.ViewModel
             return image;
         }
 
-
         private void ModifyPerson()
         {
-            users.updateUser(SelectedUser.Index);
+            try
+            {
+                users.updateUser(SelectedUser.Index);
+            }
+            catch
+            {
+            }
         }
 
     }
