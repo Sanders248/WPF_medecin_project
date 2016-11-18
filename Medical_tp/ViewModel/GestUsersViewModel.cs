@@ -12,8 +12,9 @@ namespace Medical_tp.ViewModel
     class GestUsersViewModel : BaseViewModel
     {
         #region variables
-        private ServiceUser.User _selectedUser;
-        private ObservableCollection<ServiceUser.User> _listUser = null;
+        private Model.User _selectedUser;
+        private DataAccess.Users users;
+        private ObservableCollection<Model.User> _listUser = null;
         private DataAccess.Users _dataAccessPerson;
         private string _searchPattern;
         #endregion
@@ -74,7 +75,7 @@ namespace Medical_tp.ViewModel
         /// <summary>
         /// contient la liste des utilisateurs
         /// </summary>
-        public ObservableCollection<ServiceUser.User> ListUser
+        public ObservableCollection<Model.User> ListUser
         {
             get { return _listUser; }
             set
@@ -90,7 +91,7 @@ namespace Medical_tp.ViewModel
         /// <summary>
         /// personne sélectionnée dans la liste
         /// </summary>
-        public ServiceUser.User SelectedUser
+        public Model.User SelectedUser
         {
             get { return _selectedUser; }
             set
@@ -113,13 +114,15 @@ namespace Medical_tp.ViewModel
 
             _dataAccessPerson = new Medical_tp.DataAccess.Users();
             //chargement des personnes
-            List<ServiceUser.User> tmpList = _dataAccessPerson.getUsers();
+
+            users = new DataAccess.Users();
 
             //transformation en Observable collection pour l'interface
-            ListUser = new ObservableCollection<Medical_tp.ServiceUser.User>(tmpList);
+            ListUser = new ObservableCollection<Medical_tp.Model.User>(users.getUsers());
 
             //configuration de la commande
             AddCommand = new RelayCommand(param => AddPerson());
+            ModifyCommand = new RelayCommand(param => ModifyPerson());
         }
 
         /// <summary>
@@ -127,13 +130,17 @@ namespace Medical_tp.ViewModel
         /// </summary>
         private void AddPerson()
         {
-            _listUser.Add(new Medical_tp.ServiceUser.User() { Name = "New", Firstname = "New", Login = "" });
+            _listUser.Add(users.addNewUser());
+
+            //allow to verify change from user on service // Delete this after verification
+          //  ServiceUser.ServiceUserClient serviceClient = new ServiceUser.ServiceUserClient();
+          //  ServiceUser.User[] us = serviceClient.GetListUser();
+        }
+       
+        private void ModifyPerson()
+        {
+            users.updateUser(SelectedUser.Index);
         }
 
-      /*  private void ModifyCommand()
-        {
-            _listUser.
-        }
-        */
     }
 }

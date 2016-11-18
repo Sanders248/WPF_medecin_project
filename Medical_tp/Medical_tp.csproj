@@ -58,6 +58,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataAccess\Users.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Service References\ServiceLive\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -182,9 +183,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceLive\" />
     <WCFMetadataStorage Include="Service References\ServiceObservation\" />

@@ -12,7 +12,7 @@ namespace Medical_tp.DataAccess
         /// <summary>
         /// liste des utilisateurs
         /// </summary>
-        private List<ServiceUser.User> _listUser = new List<ServiceUser.User>(); // warning be sure that is correct
+        private List<Model.User> _listUser;
         public static ServiceUser.ServiceUserClient serviceClient = new ServiceUser.ServiceUserClient();
 
         /// <summary>
@@ -20,23 +20,53 @@ namespace Medical_tp.DataAccess
         /// </summary>
         public Users()
         {
-            //init variables
-            //  _listUser = new List<Medical_tp.Model.User>();
-            
+            _listUser = new List<Model.User>();
             LoadUsers();
         }
 
+        //todo think to update the index when delete add, move elmts
+        public void updateUser(int index)
+        {
+            ServiceUser.User u = serviceClient.GetListUser()[index];
+            string previousLogin = u.Login;
+            
+            //need to update service
+            //1st way dont work
+            if (!u.Firstname.Equals(_listUser[index].Firstname))
+                serviceClient.GetUser(previousLogin).Firstname = _listUser[index].Firstname;
+
+            //2nd way dont work either
+            u.Login = _listUser[index].Login;
+            u.Name = _listUser[index].Name;
+            u.Picture = _listUser[index].Picture;
+            u.Pwd = _listUser[index].Pwd;
+            u.Role = _listUser[index].Role;
+            u.Connected = _listUser[index].Connected;
+        }
+
+        public Model.User addNewUser()
+        {
+            Model.User u = new Model.User(_listUser.Capacity);
+            _listUser.Add(u);
+
+            return u;
+        }
         /// <summary>
         /// charge les users
         /// </summary>
 
         private void LoadUsers()
-        {   
-                foreach (ServiceUser.User u in serviceClient.GetListUser())
-                    _listUser.Add(u);
+        {
+            int i = 0;
+
+            foreach (ServiceUser.User u in serviceClient.GetListUser())
+            {
+                _listUser.Add(new Model.User(u.Login, u.Pwd, u.Name, u.Firstname, u.Picture, u.Role, u.Connected, i));
+                ++i;
+            }
         }
 
-        public List<ServiceUser.User> getUsers()
+        public List<Model.User> getUsers()
         {
             return _listUser;
         }

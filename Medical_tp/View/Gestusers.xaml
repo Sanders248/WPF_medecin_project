@@ -35,7 +35,7 @@
 
         <TextBlock Grid.Column="1" Grid.Row="0">Name :</TextBlock>
         <TextBlock Grid.Column="1" Grid.Row="1">Firstname :</TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="2">Age :</TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="2">Login :</TextBlock>
 
         <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding SelectedUser.Name}"></TextBox>
         <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding SelectedUser.Firstname}"></TextBox>
