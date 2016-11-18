@@ -43,7 +43,15 @@ namespace Medical_tp.DataAccess
 
         public bool connexion(string login, string pwd)
         {
-            return serviceClient.Connect(login, pwd);
+            Boolean connected = false;
+            try
+            {
+                connected = serviceClient.Connect(login, pwd);
+            }
+            catch {
+            }
+            return connected;
+
         }
 
       /*  public void setFirstname(string login, string newFirstName)
@@ -54,6 +62,7 @@ namespace Medical_tp.DataAccess
         public void setLogin(string login, string newLogin)
         {
             serviceClient.GetUser(login).Login = newLogin;
+>>>>>>> 7dff60599db1789343a13c06ad270bb20fb32626
         }
 
         public void setName(string login, string newName)

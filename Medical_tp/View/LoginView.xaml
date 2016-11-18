@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Medical_tp.View"
         mc:Ignorable="d"
-        Title="LoginView" Height="300" Width="300" xmlns:Behaviours="clr-namespace:Medical_tp">
+        Title="Connection" Height="300" Width="300" xmlns:Behaviours="clr-namespace:Medical_tp">
     <Window.Resources>
         <Style x:Key="StyleMainGrid">
             <!--trigger pour fermer la fenêtre-->

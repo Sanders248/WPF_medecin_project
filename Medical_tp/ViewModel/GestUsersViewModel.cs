@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using System.IO;
+using System.Windows.Media;
 
 namespace Medical_tp.ViewModel
 {
@@ -16,17 +19,24 @@ namespace Medical_tp.ViewModel
         private DataAccess.Users users;
         private ObservableCollection<Model.User> _listUser = null;
         private string _searchPattern;
+        private ImageSource _DisplayedImage;
+       
         #endregion
 
         private ICommand _addCommand;
         private ICommand _modifyCommand;
+        
 
 
         #region getter / setter
+        
+        public ImageSource DisplayedImage
+        {
+            get { return _DisplayedImage; }
+            set { _DisplayedImage = value; }
+        }
 
-        /// <summary>
-        /// command pour ajouter une personne
-        /// </summary>
+
         public ICommand AddCommand
         {
             get { return _addCommand; }
@@ -83,6 +93,7 @@ namespace Medical_tp.ViewModel
                 {
                     _listUser = value;
                     OnPropertyChanged("ListUser");
+                   
                 }
             }
         }
@@ -99,6 +110,10 @@ namespace Medical_tp.ViewModel
                 {
                     _selectedUser = value;
                     OnPropertyChanged("SelectedUser");
+                    
+                    DisplayedImage = LoadImage(_selectedUser.Picture);
+                    OnPropertyChanged("DisplayedImage");
+
                 }
             }
         }
@@ -110,11 +125,12 @@ namespace Medical_tp.ViewModel
         public GestUsersViewModel()
         {
             DisplayName = "Display User";
-           
+
             users = new DataAccess.Users();
 
             //transformation en Observable collection pour l'interface
             ListUser = new ObservableCollection<Medical_tp.Model.User>(users.getUsers());
+            DisplayedImage = LoadImage(ListUser[0].Picture);
 
             //configuration de la commande
             AddCommand = new RelayCommand(param => AddPerson());
@@ -124,14 +140,39 @@ namespace Medical_tp.ViewModel
         /// <summary>
         /// action permettant d'ajouter une personne à la liste
         /// </summary>
+      
+
+
         private void AddPerson()
         {
             _listUser.Add(users.addNewUser());
 
             //allow to verify change from user on service // Delete this after verification
-          //  ServiceUser.ServiceUserClient serviceClient = new ServiceUser.ServiceUserClient();
-          //  ServiceUser.User[] us = serviceClient.GetListUser();
+            //  ServiceUser.ServiceUserClient serviceClient = new ServiceUser.ServiceUserClient();
+            //  ServiceUser.User[] us = serviceClient.GetListUser();
         }
+
+
+        private static BitmapImage LoadImage(byte[] imageData)
+        {
+            if (imageData == null || imageData.Length == 0) return null;
+            var image = new BitmapImage();
+            
+            using (var mem = new MemoryStream(imageData))
+            {
+                image.CacheOption = BitmapCacheOption.None;
+                mem.Position = 0;
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.None;
+                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.UriSource = null;
+                image.StreamSource = mem;
+                image.EndInit();
+            }
+            return image;
+        }
+
        
         private void ModifyPerson()
         {
