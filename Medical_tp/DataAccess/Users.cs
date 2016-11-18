@@ -38,37 +38,46 @@ namespace Medical_tp.DataAccess
             {
                 string previousLogin = u.Login;
 
-                //need to update service
-                //1st way dont work
-                if (!u.Firstname.Equals(_listUser[index].Firstname))
-                    serviceClient.GetUser(previousLogin).Firstname = _listUser[index].Firstname;
+                serviceClient.DeleteUser(previousLogin);
 
-                //2nd way dont work either
-                u.Login = _listUser[index].Login;
-                u.Name = _listUser[index].Name;
-                u.Picture = _listUser[index].Picture;
-                u.Pwd = _listUser[index].Pwd;
-                u.Role = _listUser[index].Role;
-                u.Connected = _listUser[index].Connected;
+                ServiceUser.User servUsr = new ServiceUser.User();
+                servUsr.Firstname = _listUser[index].Firstname;
+                servUsr.Login = _listUser[index].Login;
+                servUsr.Name = _listUser[index].Name;
+                servUsr.Picture = _listUser[index].Picture;
+                servUsr.Pwd = _listUser[index].Pwd;
+                servUsr.Role = _listUser[index].Role;
+
+                serviceClient.AddUser(servUsr);
             }
         }
 
         public Model.User addNewUser()
         {
             Model.User u = new Model.User(_listUser.Capacity);
-            
             _listUser.Add(u);
+
+            ServiceUser.User servUsr = new ServiceUser.User();
+            servUsr.Firstname = u.Firstname;
+            servUsr.Login = u.Login;
+            servUsr.Name = u.Name;
+            servUsr.Picture = u.Picture;
+            servUsr.Pwd = u.Pwd;
+            servUsr.Role = u.Role;
+
+            serviceClient.AddUser(servUsr);
 
             return u;
         }
-        /// <summary>
-        /// charge les users
-        /// </summary>
+
+        public void removeUser(Model.User user)
+        {
+            serviceClient.DeleteUser(user.Login);
+            _listUser.Remove(user);
+        }
 
         private void LoadUsers()
         {
-
-
             int i = 0;
             try
             {

@@ -25,7 +25,7 @@ namespace Medical_tp.ViewModel
 
         private ICommand _addCommand;
         private ICommand _modifyCommand;
-        
+        private ICommand _deleteCommand;       
 
 
         #region getter / setter
@@ -36,6 +36,11 @@ namespace Medical_tp.ViewModel
             set { _DisplayedImage = value; }
         }
 
+        public ICommand DeleteCommand
+        {
+            get { return _deleteCommand; }
+            set { _deleteCommand = value; }
+        }
 
         public ICommand AddCommand
         {
@@ -111,7 +116,9 @@ namespace Medical_tp.ViewModel
                     _selectedUser = value;
                     OnPropertyChanged("SelectedUser");
                     
-                    DisplayedImage = LoadImage(_selectedUser.Picture);
+                    if (_selectedUser != null && _selectedUser.Picture != null)
+                        DisplayedImage = LoadImage(_selectedUser.Picture);
+
                     OnPropertyChanged("DisplayedImage");
 
                 }
@@ -130,18 +137,15 @@ namespace Medical_tp.ViewModel
 
             //transformation en Observable collection pour l'interface
             ListUser = new ObservableCollection<Medical_tp.Model.User>(users.getUsers());
-            DisplayedImage = LoadImage(ListUser[0].Picture);
+
+            if (ListUser[0].Picture != null)
+                DisplayedImage = LoadImage(ListUser[0].Picture);
 
             //configuration de la commande
             AddCommand = new RelayCommand(param => AddPerson());
             ModifyCommand = new RelayCommand(param => ModifyPerson());
+            DeleteCommand = new RelayCommand(param => DeletePerson());
         }
-
-        /// <summary>
-        /// action permettant d'ajouter une personne à la liste
-        /// </summary>
-      
-
 
         private void AddPerson()
         {
@@ -150,6 +154,14 @@ namespace Medical_tp.ViewModel
             //allow to verify change from user on service // Delete this after verification
             //  ServiceUser.ServiceUserClient serviceClient = new ServiceUser.ServiceUserClient();
             //  ServiceUser.User[] us = serviceClient.GetListUser();
+        }
+
+        private void DeletePerson()
+        {
+            //maybe do in in xaml
+            _listUser.Remove(SelectedUser);
+
+            users.removeUser(SelectedUser);
         }
 
 
@@ -172,8 +184,8 @@ namespace Medical_tp.ViewModel
             }
             return image;
         }
-
-       
+        
+               
         private void ModifyPerson()
         {
             users.updateUser(SelectedUser.Index);
