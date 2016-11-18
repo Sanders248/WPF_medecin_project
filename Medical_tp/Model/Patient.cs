@@ -25,6 +25,15 @@ namespace Medical_tp.Model
             _observations = observations;
         }
 
+        public Patient(int id)
+        {
+            _name = "Unknow";
+            _firstname = "Unknow";
+            _birthday = DateTime.Now;
+            _id = id;
+            _observations = null;
+        }
+
         #region getter / setter
 
         public List<Observation> Observations

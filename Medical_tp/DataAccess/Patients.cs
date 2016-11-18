@@ -20,21 +20,71 @@ namespace Medical_tp.DataAccess
        
         private void LoadPatients()
         {
-            foreach (ServicePatient.Patient p in servicePatient.GetListPatient())
+            try
             {
-                List<Model.Observation> obsList = new List<Model.Observation>();
+                foreach (ServicePatient.Patient p in servicePatient.GetListPatient())
+                {
+                    List<Model.Observation> obsList = new List<Model.Observation>();
 
-                foreach (ServicePatient.Observation o in p.Observations)
-                    obsList.Add(new Model.Observation(o.Date, o.Comment, o.Prescription, o.Pictures, o.Weight, o.BloodPressure));
+                    try
+                    {
+                        foreach (ServicePatient.Observation o in p.Observations)
+                            obsList.Add(new Model.Observation(o.Date, o.Comment, o.Prescription, o.Pictures, o.Weight, o.BloodPressure));
+                    }
+                    catch { }
 
-                _listPatient.Add(new Model.Patient(p.Name, p.Firstname, p.Birthday, p.Id, obsList));
+                    _listPatient.Add(new Model.Patient(p.Name, p.Firstname, p.Birthday, p.Id, obsList));
+                }
             }
+            catch { }
         }
 
         public List<Model.Patient> getPatients()
         {
             return _listPatient;
         }
+        
+        public Model.Patient addNewPatient()
+        {
+            Model.Patient p = new Model.Patient(_listPatient[_listPatient.Count - 1].Id + 1);
 
+            _listPatient.Add(p);
+
+            ServicePatient.Patient servPatient = new ServicePatient.Patient();
+            servPatient.Firstname = p.Firstname;
+            servPatient.Name = p.Name;
+            servPatient.Birthday = p.Birthday;
+            servPatient.Id = p.Id;
+            servPatient.Observations = null;
+
+            servicePatient.AddPatient(servPatient);
+
+            return p;
+        }
+
+        public void removePatient(Model.Patient patient)
+        {
+            try
+            {
+                servicePatient.DeletePatient(patient.Id);
+                _listPatient.Remove(patient);
+            }
+            catch
+            { }
+        }
+
+        public void updatePatient(Model.Patient patient)
+        {
+            servicePatient.DeletePatient(patient.Id);
+
+            ServicePatient.Patient servPatient = new ServicePatient.Patient();
+            servPatient.Id = patient.Id;
+            servPatient.Name = patient.Name;
+            servPatient.Firstname = patient.Firstname;
+            servPatient.Observations = null;
+            servPatient.Birthday = patient.Birthday;
+
+            servicePatient.AddPatient(servPatient);
+        }
     }
 }

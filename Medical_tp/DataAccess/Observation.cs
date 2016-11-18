@@ -14,6 +14,7 @@ namespace Medical_tp.DataAccess
         {
         }
 
+
         /*
         public Model.Observation getObservation()
         {

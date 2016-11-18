@@ -20,6 +20,7 @@ namespace Medical_tp.ViewModel
 
         private ICommand _addCommand;
         private ICommand _modifyCommand;
+        private ICommand _deleteCommand;
 
 
         #region getter / setter
@@ -39,8 +40,14 @@ namespace Medical_tp.ViewModel
             set { _modifyCommand = value; }
         }
 
-        // todo 
-       /* public string SearchPattern
+        public ICommand DeleteCommand
+        {
+            get { return _deleteCommand; }
+            set { _deleteCommand = value; }
+        }
+
+
+        public string SearchPattern
         {
             get { return _searchPattern; }
             set
@@ -50,13 +57,13 @@ namespace Medical_tp.ViewModel
                     _searchPattern = value;
                     //utilisation des propriétés de vue d'une collection 
                     //pour faire des filtres dessus
-                    System.ComponentModel.ICollectionView myView = CollectionViewSource.GetDefaultView(ListUser);
+                    System.ComponentModel.ICollectionView myView = CollectionViewSource.GetDefaultView(ListPatient);
                     myView.Filter = (item) =>
                     {
-                        if (item as Model.User == null)
+                        if (item as Model.Patient == null)
                             return false;
 
-                        Model.User personView = (Model.User)item;
+                        Model.Patient personView = (Model.Patient)item;
                         if (personView.Firstname.ToLower().Contains(value.ToLower()) ||
                             personView.Name.ToLower().Contains(value.ToLower()))
                             return true;
@@ -67,7 +74,7 @@ namespace Medical_tp.ViewModel
                     OnPropertyChanged("SearchPattern");
                 }
             }
-        }*/
+        }
 
         /// <summary>
         /// contient la liste des utilisateurs
@@ -117,6 +124,7 @@ namespace Medical_tp.ViewModel
             //configuration de la commande
             AddCommand = new RelayCommand(param => AddPerson());
             ModifyCommand = new RelayCommand(param => ModifyPerson());
+            DeleteCommand = new RelayCommand(param => DeletePerson());
         }
 
         /// <summary>
@@ -124,15 +132,19 @@ namespace Medical_tp.ViewModel
         /// </summary>
         private void AddPerson()
         {
-            //todo
-           // _listPatient.Add(patients.addNewUser());
+            _listPatient.Add(patients.addNewPatient());
         }
        
         private void ModifyPerson()
         {
-            //todo
-          //  patients.updateUser(SelectedUser.Index);
+            patients.updatePatient(SelectedPatient);
         }
         
+        public void DeletePerson()
+        {
+            patients.removePatient(SelectedPatient);
+
+            _listPatient.Remove(SelectedPatient);
+        }
     }
 }

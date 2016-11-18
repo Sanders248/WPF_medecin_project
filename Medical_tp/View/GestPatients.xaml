@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Medical_tp.View"
         mc:Ignorable="d"
-        Title="GestPatients" Height="476.695" Width="858.051" xmlns:Behaviours="clr-namespace:Medical_tp">
+        Title="Accueil" Height="476.695" Width="858.051" xmlns:Behaviours="clr-namespace:Medical_tp">
     <Window.Resources>
         <DataTemplate x:Key="dtListPatient">
             <StackPanel Orientation="Horizontal">
@@ -15,6 +15,9 @@
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="/View/Ressources/main-page-Bg.jpg"></ImageBrush>
+    </Window.Background>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -26,26 +29,29 @@
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="230" />
-            <ColumnDefinition Width="100*" />
-            <ColumnDefinition Width="159.684*" />
+            <ColumnDefinition Width="242" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="211" />
         </Grid.ColumnDefinitions>
         <!--propriété à true pour pouvoir utiliser la collectionview-->
-        <ListBox Grid.RowSpan="4" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource dtListPatient}" ItemsSource="{Binding ListPatient}" SelectedItem="{Binding SelectedPatient, Mode=TwoWay}"></ListBox>
+        <ListBox Grid.RowSpan="3" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource dtListPatient}" ItemsSource="{Binding ListPatient}" SelectedItem="{Binding SelectedPatient, Mode=TwoWay}" Margin="4,9,2,0" Grid.Row="1"/>
 
-        <TextBlock Grid.Column="1" Grid.Row="0">Name :</TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="1">Firstname :</TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="2">Login :</TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Width="68" Margin="0,22,8,12" Grid.RowSpan="2">Name :</TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Width="68" Margin="0,23,8,13" Grid.RowSpan="2">Firstname :</TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Width="68" Margin="0,22,8,147" Grid.RowSpan="2">Birthday :</TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" Width="68" Margin="0,22,8,111" RenderTransformOrigin="0.5,0.395">Id :</TextBlock>
 
-        <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding SelectedPatient.Name}"></TextBox>
-        <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding SelectedPatient.Firstname}"></TextBox>
-        <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding SelectedPatient.Login}"></TextBox>
-        <StackPanel Grid.Row="3" >
-            <TextBlock Text="Search : "></TextBlock>
-            <TextBox Height="20" Text="{Binding SearchPattern, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        </StackPanel>
-        <Button Grid.Row="4" Command="{Binding AddCommand}" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">Add</Button>
+        <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding SelectedPatient.Name}" Margin="2,22,7,12" Grid.RowSpan="2"/>
+        <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding SelectedPatient.Firstname}" Margin="2,23,7,13" Grid.RowSpan="2"/>
+        <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding SelectedPatient.Birthday}" Margin="2,22,7,0" Grid.RowSpan="2" Height="36" VerticalAlignment="Top"/>
+        <TextBox IsReadOnly="True" Grid.Column="2" Grid.Row="3" Text="{Binding SelectedPatient.Id}" Margin="2,23,7,0" Height="40" VerticalAlignment="Top"/>
+        <StackPanel Grid.Row="3" />
+        <Button Grid.Row="4" Command="{Binding AddCommand}" Margin="96,3,2,0" Height="20" VerticalAlignment="Top">Add</Button>
+        <Button Grid.Row="3" Command="{Binding DeleteCommand}" VerticalAlignment="Top" RenderTransformOrigin="2.875,0.462" Grid.Column="2" Margin="100,109,8,0" Height="20">Delete</Button>
+        <Button Grid.Row="3" Command="{Binding ModifyCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.875,0.462" Grid.Column="2" Margin="4,109,0,0" Width="98" Height="20">Modify</Button>
 
-        <Button Grid.Row="3" Command="{Binding ModifyCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="2.875,0.462" Grid.Column="2" Margin="35,34,305,116">Modify</Button>
+        <TextBlock Text="Search : " Margin="4,5,2,14"/>
+        <TextBox Text="{Binding SearchPattern, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="3,20,3,30" Grid.RowSpan="2"/>
+
     </Grid>
 </Window>
