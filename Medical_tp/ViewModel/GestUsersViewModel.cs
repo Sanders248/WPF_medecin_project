@@ -116,7 +116,7 @@ namespace Medical_tp.ViewModel
                 {
                     _selectedUser = value;
                     OnPropertyChanged("SelectedUser");
-                   DisplayedImage = LoadImage(_listUser[2].Picture);
+                    DisplayedImage = LoadImage(_selectedUser.Picture);
 
                 }
             }
@@ -148,11 +148,14 @@ namespace Medical_tp.ViewModel
         /// <summary>
         /// action permettant d'ajouter une personne à la liste
         /// </summary>
+      
+
+
         private void AddPerson()
         {
-          
-           // _listUser.Add(new Medical_tp.ServiceUser.User() { Name = "New", Firstname = "New", Login = "" });
+            _listUser.Add(users.addNewUser());
         }
+    
 
         private static BitmapImage LoadImage(byte[] imageData)
         {
