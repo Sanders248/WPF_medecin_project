@@ -15,11 +15,11 @@
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="/View/Ressources/main-page-Bg.jpg"></ImageBrush>
+    </Window.Background>
 
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/View/Ressources/main-page-Bg.jpg"/>
-        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="35" />
             <RowDefinition Height="35" />
@@ -54,7 +54,7 @@
         <Button Grid.Row="3" Command="{Binding ModifyCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.875,0.462" Grid.Column="2" Margin="4,109,0,0" Width="122" Height="20">Modify</Button>
         <TextBlock Text="Search : " Margin="4,5,2,14"/>
         <TextBox Text="{Binding SearchPattern, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="3,20,3,30" Grid.RowSpan="2"/>
-        <Image x:Name="image" Source="{Binding DisplayedImage}" Grid.Column="1" Margin="0,14,119,74" Grid.RowSpan="4" HorizontalAlignment="Right" Width="168"/>
+        <Image x:Name="image" Source="{Binding DisplayedImage, Mode=TwoWay}" Grid.Column="1" Margin="0,14,88,0" Grid.RowSpan="5" HorizontalAlignment="Right" Width="227" Height="264" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

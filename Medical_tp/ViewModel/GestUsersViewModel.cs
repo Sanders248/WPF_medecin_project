@@ -116,7 +116,9 @@ namespace Medical_tp.ViewModel
                 {
                     _selectedUser = value;
                     OnPropertyChanged("SelectedUser");
+                    
                     DisplayedImage = LoadImage(_selectedUser.Picture);
+                    OnPropertyChanged("DisplayedImage");
 
                 }
             }
