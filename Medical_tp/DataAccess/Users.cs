@@ -47,6 +47,7 @@ namespace Medical_tp.DataAccess
         public Model.User addNewUser()
         {
             Model.User u = new Model.User(_listUser.Capacity);
+            
             _listUser.Add(u);
 
             return u;

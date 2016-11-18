@@ -86,8 +86,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\GestPatientsViewModel.cs" />
     <Compile Include="ViewModel\GestUsersViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="View\GestPatients.xaml.cs">
+      <DependentUpon>GestPatients.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GestUsers.xaml.cs">
       <DependentUpon>GestUsers.xaml</DependentUpon>
     </Compile>
@@ -100,6 +104,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataAccess\User.cs" />
+    <Page Include="View\GestPatients.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\GestUsers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

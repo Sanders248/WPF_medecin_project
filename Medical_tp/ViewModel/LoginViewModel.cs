@@ -104,8 +104,13 @@ namespace Medical_tp.ViewModel
         {
             if (_dataAccessUser.connexion(Login, Password))
             {
-                View.GestUsers window = new View.GestUsers();
-                ViewModel.GestUsersViewModel vm = new GestUsersViewModel();
+                 View.GestUsers window = new View.GestUsers();
+                 ViewModel.GestUsersViewModel vm = new GestUsersViewModel();
+
+                //Uncomment to show the patientpage instead of userPage
+           //     View.GestPatients window = new View.GestPatients();
+           //     ViewModel.GestPatientsViewModel vm = new GestPatientsViewModel();
+
                 window.DataContext = vm;
                 window.Show();
                 CloseSignal = true;

@@ -9,12 +9,12 @@ using System.Windows.Input;
 
 namespace Medical_tp.ViewModel
 {
-    class GestUsersViewModel : BaseViewModel
+    class GestPatientsViewModel : BaseViewModel
     {
         #region variables
-        private Model.User _selectedUser;
-        private DataAccess.Users users;
-        private ObservableCollection<Model.User> _listUser = null;
+        private Model.Patient _selectedPatient;
+        private DataAccess.Patients patients;
+        private ObservableCollection<Model.Patient> _listPatient = null;
         private string _searchPattern;
         #endregion
 
@@ -39,10 +39,8 @@ namespace Medical_tp.ViewModel
             set { _modifyCommand = value; }
         }
 
-        /// <summary>
-        /// filtre de recherche
-        /// </summary>
-        public string SearchPattern
+        // todo 
+       /* public string SearchPattern
         {
             get { return _searchPattern; }
             set
@@ -69,20 +67,20 @@ namespace Medical_tp.ViewModel
                     OnPropertyChanged("SearchPattern");
                 }
             }
-        }
+        }*/
 
         /// <summary>
         /// contient la liste des utilisateurs
         /// </summary>
-        public ObservableCollection<Model.User> ListUser
+        public ObservableCollection<Model.Patient> ListPatient
         {
-            get { return _listUser; }
+            get { return _listPatient; }
             set
             {
-                if (_listUser != value)
+                if (_listPatient != value)
                 {
-                    _listUser = value;
-                    OnPropertyChanged("ListUser");
+                    _listPatient = value;
+                    OnPropertyChanged("ListPatient");
                 }
             }
         }
@@ -90,15 +88,15 @@ namespace Medical_tp.ViewModel
         /// <summary>
         /// personne sélectionnée dans la liste
         /// </summary>
-        public Model.User SelectedUser
+        public Model.Patient SelectedPatient
         {
-            get { return _selectedUser; }
+            get { return _selectedPatient; }
             set
             {
-                if (_selectedUser != value)
+                if (_selectedPatient != value)
                 {
-                    _selectedUser = value;
-                    OnPropertyChanged("SelectedUser");
+                    _selectedPatient = value;
+                    OnPropertyChanged("SelectedPatient");
                 }
             }
         }
@@ -107,14 +105,14 @@ namespace Medical_tp.ViewModel
         /// <summary>
         /// constructeur
         /// </summary>
-        public GestUsersViewModel()
+        public GestPatientsViewModel()
         {
-            DisplayName = "Display User";
-           
-            users = new DataAccess.Users();
+            DisplayName = "Display Patients";
+            
+            patients = new DataAccess.Patients();
 
             //transformation en Observable collection pour l'interface
-            ListUser = new ObservableCollection<Medical_tp.Model.User>(users.getUsers());
+            ListPatient = new ObservableCollection<Medical_tp.Model.Patient>(patients.getPatients());
 
             //configuration de la commande
             AddCommand = new RelayCommand(param => AddPerson());
@@ -126,17 +124,15 @@ namespace Medical_tp.ViewModel
         /// </summary>
         private void AddPerson()
         {
-            _listUser.Add(users.addNewUser());
-
-            //allow to verify change from user on service // Delete this after verification
-          //  ServiceUser.ServiceUserClient serviceClient = new ServiceUser.ServiceUserClient();
-          //  ServiceUser.User[] us = serviceClient.GetListUser();
+            //todo
+           // _listPatient.Add(patients.addNewUser());
         }
        
         private void ModifyPerson()
         {
-            users.updateUser(SelectedUser.Index);
+            //todo
+          //  patients.updateUser(SelectedUser.Index);
         }
-
+        
     }
 }

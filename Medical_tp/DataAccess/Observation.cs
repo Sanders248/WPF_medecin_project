@@ -14,8 +14,8 @@ namespace Medical_tp.DataAccess
         {
         }
 
-        //todo
-       /* public Model.Observation getObservation()
+        /*
+        public Model.Observation getObservation()
         {
             ServiceObservation.Observation obsService = serviceObservationCient.
             Model.Observation obs = new Model.Observation();

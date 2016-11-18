@@ -33,10 +33,10 @@ namespace Medical_tp.Model
 
         public User(int id)
         {
-            _login = "";
+            _login = "newLogin";
             _pwd = "";
-            _name = "";
-            _firstname = "";
+            _name = "newName";
+            _firstname = "newFirstName";
             _picture = null;
             _role = "";
             _connected = false;
