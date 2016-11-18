@@ -26,7 +26,7 @@ namespace Medical_tp.ViewModel
 
         private ICommand _addCommand;
         private ICommand _modifyCommand;
-        
+        private ICommand _changeImage;
 
 
         #region getter / setter
@@ -53,6 +53,13 @@ namespace Medical_tp.ViewModel
         {
             get { return _modifyCommand; }
             set { _modifyCommand = value; }
+        }
+
+        public ICommand changeImage
+        {
+            get { return _changeImage; }
+            set { _changeImage = value; }
+
         }
 
         /// <summary>
@@ -116,10 +123,14 @@ namespace Medical_tp.ViewModel
                 {
                     _selectedUser = value;
                     OnPropertyChanged("SelectedUser");
-                    
-                    DisplayedImage = LoadImage(_selectedUser.Picture);
-                    OnPropertyChanged("DisplayedImage");
-
+                    try
+                    {
+                        DisplayedImage = LoadImage(_selectedUser.Picture);
+                        OnPropertyChanged("DisplayedImage");
+                    }
+                    catch
+                    {
+                    }
                 }
             }
         }
@@ -140,18 +151,46 @@ namespace Medical_tp.ViewModel
 
             //transformation en Observable collection pour l'interface
             ListUser = new ObservableCollection<Medical_tp.Model.User>(users.getUsers());
-            DisplayedImage = LoadImage(ListUser[0].Picture);
+           
 
             //configuration de la commande
             AddCommand = new RelayCommand(param => AddPerson());
             ModifyCommand = new RelayCommand(param => ModifyPerson());
+            changeImage = new RelayCommand(param => change_image());
         }
 
         /// <summary>
         /// action permettant d'ajouter une personne à la liste
         /// </summary>
-      
 
+        private void change_image()
+        {
+
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.DefaultExt = ".png";
+            dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.JPG)|*.jpg|GIF Files (*.gif)|*.gif";
+            Nullable<bool> result = dlg.ShowDialog();
+
+            
+            if (result == true)
+            {
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.UriSource = new Uri(dlg.FileName);
+                image.EndInit();
+                DisplayedImage = image;
+                OnPropertyChanged("DisplayedImage");
+                byte[] data;
+                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(image));
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    encoder.Save(ms);
+                    data = ms.ToArray();
+                }
+                _selectedUser.Picture = data;
+            }
+        }
 
         private void AddPerson()
         {
@@ -179,17 +218,7 @@ namespace Medical_tp.ViewModel
             return image;
         }
 
-        /*  private void ModifyCommand()
-          {
-              _listUser.
-          }
-          */
 
-            //allow to verify change from user on service // Delete this after verification
-          //  ServiceUser.ServiceUserClient serviceClient = new ServiceUser.ServiceUserClient();
-          //  ServiceUser.User[] us = serviceClient.GetListUser();
-        
-       
         private void ModifyPerson()
         {
             users.updateUser(SelectedUser.Index);

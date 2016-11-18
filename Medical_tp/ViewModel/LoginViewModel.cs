@@ -97,6 +97,10 @@ namespace Medical_tp.ViewModel
             _loginCommand = new RelayCommand(param => LoginAccess(), param => true);
         }
 
+
+
+        
+
         /// <summary>
         /// action permettant de s'authentifier
         /// </summary>

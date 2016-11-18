@@ -45,13 +45,15 @@
 
         <TextBox Grid.Column="2" Grid.Row="0" Text="{Binding SelectedUser.Name}" Margin="2,22,7,12" Grid.RowSpan="2"/>
         <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding SelectedUser.Firstname}" Margin="2,23,7,13" Grid.RowSpan="2"/>
-        <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding SelectedUser.Login}" Margin="2,21,7,0" Grid.RowSpan="2" Height="36" VerticalAlignment="Top"/>
-        <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding SelectedUser.Password}" Margin="2,23,7,0" Height="39" VerticalAlignment="Top"/>
-        <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding SelectedUser.Role}" Margin="2,62,7,0" Height="40" VerticalAlignment="Top"/>
+        <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding SelectedUser.Login}" Margin="2,22,7,0" Grid.RowSpan="2" Height="36" VerticalAlignment="Top"/>
+        <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding SelectedUser.Pwd}" Margin="2,23,7,0" Height="40" VerticalAlignment="Top"/>
+        <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding SelectedUser.Role}" Margin="2,63,7,0" Height="40" VerticalAlignment="Top"/>
         <StackPanel Grid.Row="3" />
         <Button Grid.Row="4" Command="{Binding AddCommand}" Margin="96,3,2,0" Height="20" VerticalAlignment="Top">Add</Button>
 
         <Button Grid.Row="3" Command="{Binding ModifyCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.875,0.462" Grid.Column="2" Margin="4,109,0,0" Width="122" Height="20">Modify</Button>
+        <Button Grid.Row="3" Command="{Binding changeImage}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.875,0.462" Grid.Column="2" Margin="4,133,0,0" Width="122" Height="20">Change image</Button>
+
         <TextBlock Text="Search : " Margin="4,5,2,14"/>
         <TextBox Text="{Binding SearchPattern, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="3,20,3,30" Grid.RowSpan="2"/>
         <Image x:Name="image" Source="{Binding DisplayedImage, Mode=TwoWay}" Grid.Column="1" Margin="0,14,88,0" Grid.RowSpan="5" HorizontalAlignment="Right" Width="227" Height="264" VerticalAlignment="Top"/>
