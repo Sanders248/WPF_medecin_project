@@ -20,6 +20,27 @@
     </Window.Background>
 
     <Grid>
+
+
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="Users">
+                    <MenuItem Header="_Open"/>
+                    <MenuItem Header="_Close"/>
+                    <MenuItem Header="_Save"/>
+                </MenuItem>
+                <MenuItem Header="Patients">
+                    <MenuItem Header="_Open"/>
+                    <MenuItem Header="_Close"/>
+                    <MenuItem Header="_Save"/>
+                </MenuItem>
+            </Menu>
+            <StackPanel></StackPanel>
+        </DockPanel>
+
+
+        <Grid Margin="2,33,-2,-33">
+       
         <Grid.RowDefinitions>
             <RowDefinition Height="35" />
             <RowDefinition Height="35" />
@@ -33,6 +54,7 @@
             <ColumnDefinition />
             <ColumnDefinition Width="211" />
         </Grid.ColumnDefinitions>
+        
         <!--propriété à true pour pouvoir utiliser la collectionview-->
         <ListBox Grid.RowSpan="3" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource dtListUser}" ItemsSource="{Binding ListUser}" SelectedItem="{Binding SelectedUser, Mode=TwoWay}" Margin="4,9,2,0" Grid.Row="1"/>
 
@@ -51,12 +73,13 @@
         <StackPanel Grid.Row="3" />
         <Button Grid.Row="4" Command="{Binding AddCommand}" Margin="96,3,2,0" Height="20" VerticalAlignment="Top">Add</Button>
         <Button Grid.Row="3" Command="{Binding DeleteCommand}" VerticalAlignment="Top" RenderTransformOrigin="2.875,0.462" Grid.Column="2" Margin="100,109,8,0" Height="20">Delete</Button>
-        <Button Grid.Row="3" Command="{Binding ModifyCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.875,0.462" Grid.Column="2" Margin="4,109,0,0" Width="98" Height="20">Modify</Button>
-        <Button Grid.Row="3" Command="{Binding changeImage}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.875,0.462" Grid.Column="2" Margin="4,133,0,0" Width="198" Height="20">Change image</Button>
+        <Button Grid.Row="3" Command="{Binding ModifyCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.875,0.462" Grid.Column="2" Margin="4,109,0,0" Width="98" Height="20">Save</Button>
+        <Button Grid.Row="3" Command="{Binding changeImage}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.875,0.462" Grid.Column="2" Margin="4,133,0,0" Width="122" Height="20">Change image</Button>
 
         <TextBlock Text="Search : " Margin="4,5,2,14"/>
         <TextBox Text="{Binding SearchPattern, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="3,20,3,30" Grid.RowSpan="2"/>
-        <Image x:Name="image" Source="{Binding DisplayedImage, Mode=TwoWay}" Grid.Column="1" Margin="82,14,88,0" Grid.RowSpan="5" Height="264" VerticalAlignment="Top"/>
-
+        <Image x:Name="image" Source="{Binding DisplayedImage, Mode=TwoWay}" Grid.Column="1" Margin="0,14,88,0" Grid.RowSpan="5" HorizontalAlignment="Right" Width="227" Height="264" VerticalAlignment="Top"/>
+       
+    </Grid>
     </Grid>
 </Window>

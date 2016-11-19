@@ -161,11 +161,14 @@ namespace Medical_tp.ViewModel
 
         private void change_image()
         {
+            if (SelectedUser == null)
+                return;
+            
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.DefaultExt = ".png";
-            dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.JPG)|*.jpg|GIF Files (*.gif)|*.gif";
+            dlg.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
             Nullable<bool> result = dlg.ShowDialog();
-            
+
             if (result == true)
             {
                 BitmapImage image = new BitmapImage();
@@ -189,10 +192,6 @@ namespace Medical_tp.ViewModel
         private void AddPerson()
         {
             _listUser.Add(users.addNewUser());
-
-            //allow to verify change from user on service // Delete this after verification
-            //  ServiceUser.ServiceUserClient serviceClient = new ServiceUser.ServiceUserClient();
-            //  ServiceUser.User[] us = serviceClient.GetListUser();
         }
 
         private void DeletePerson()
@@ -203,7 +202,11 @@ namespace Medical_tp.ViewModel
             _listUser.Remove(SelectedUser);
         }
 
-
+        /// <summary>
+        /// /// ATTENTION SA BOUGE BABY //////////
+        /// </summary>
+        /// <param name="imageData"></param>
+        /// <returns></returns>
         private static BitmapImage LoadImage(byte[] imageData)
         {
             if (imageData == null || imageData.Length == 0) return null;
@@ -235,6 +238,7 @@ namespace Medical_tp.ViewModel
             {
             }
         }
-
+        
     }
+
 }
