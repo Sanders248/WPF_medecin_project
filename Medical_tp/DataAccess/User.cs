@@ -24,6 +24,14 @@ namespace Medical_tp.DataAccess
             return null;
         }
 
+        public static Model.User getUser(string login)
+        {
+            ServiceUser.User servUser = serviceClient.GetUser(login);
+            Model.User u = new Model.User(servUser.Login, servUser.Pwd, servUser.Name, servUser.Firstname, servUser.Picture, servUser.Role, servUser.Connected);
+
+            return u;
+        }
+
         //todo see what happend when we add a enw user then modify it
         public void updateUser(Model.User user)
         {

@@ -266,11 +266,25 @@ namespace Medical_tp.ViewModel
 
         private void OpenPatientView()
         {
-             View.GestPatients window = new View.GestPatients();
-             ViewModel.GestPatientsViewModel vm = new GestPatientsViewModel();
+            Model.User actualUser = Data.Session.Instance.ActualUser;
 
-            window.DataContext = vm;
-            window.Show();
+
+            if (actualUser.Role.Equals("Infirmiere") || actualUser.Role.Equals("Infirmière"))
+            {
+                View.GestPatientsInfirmiere window = new View.GestPatientsInfirmiere();
+                ViewModel.GestPatientsViewModel vm = new GestPatientsViewModel();
+                window.DataContext = vm;
+                window.Show();
+            }
+            else
+            {
+                View.GestPatients window = new View.GestPatients();
+                ViewModel.GestPatientsViewModel vm = new GestPatientsViewModel();
+                window.DataContext = vm;
+                window.Show();
+            }
+
+           
             CloseSignal = true;
         }
     }

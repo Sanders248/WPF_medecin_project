@@ -61,6 +61,7 @@
     <Compile Include="DataAccess\Patient.cs" />
     <Compile Include="DataAccess\Patients.cs" />
     <Compile Include="DataAccess\Users.cs" />
+    <Compile Include="Data\Session.cs" />
     <Compile Include="Model\Observation.cs" />
     <Compile Include="Model\Patient.cs" />
     <Compile Include="Model\User.cs" />
@@ -89,8 +90,14 @@
     <Compile Include="ViewModel\GestPatientsViewModel.cs" />
     <Compile Include="ViewModel\GestUsersViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="View\GestPatientsInfirmiere.xaml.cs">
+      <DependentUpon>GestPatientsInfirmiere.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GestPatients.xaml.cs">
       <DependentUpon>GestPatients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GestUsersInfirmiere.xaml.cs">
+      <DependentUpon>GestUsersInfirmiere.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GestUsers.xaml.cs">
       <DependentUpon>GestUsers.xaml</DependentUpon>
@@ -104,7 +111,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataAccess\User.cs" />
+    <Page Include="View\GestPatientsInfirmiere.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\GestPatients.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\GestUsersInfirmiere.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

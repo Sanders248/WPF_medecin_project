@@ -105,16 +105,22 @@ namespace Medical_tp.ViewModel
         {
             if (_dataAccessUser.connexion(Login, Password))
             {
-                 View.GestUsers window = new View.GestUsers();
-                 ViewModel.GestUsersViewModel vm = new GestUsersViewModel();
-
-                //Uncomment to show the patientpage instead of userPage
-               // View.GestPatients window = new View.GestPatients();
-               // ViewModel.GestPatientsViewModel vm = new GestPatientsViewModel();
-
-                window.DataContext = vm;
+               Model.User actualUser = Data.Session.Instance.ActualUser = DataAccess.User.getUser(Login);
                 
-                window.Show();
+
+                if (actualUser.Role.Equals("Infirmiere") || actualUser.Role.Equals("Infirmière")) {
+                    View.GestUsersInfirmiere window = new View.GestUsersInfirmiere();
+                    ViewModel.GestUsersViewModel vm = new GestUsersViewModel();
+                    window.DataContext = vm;
+                    window.Show();
+                }
+                else {
+                    View.GestUsers window = new View.GestUsers();
+                    ViewModel.GestUsersViewModel vm = new GestUsersViewModel();
+                    window.DataContext = vm;
+                    window.Show();
+                }
+                
                 CloseSignal = true;
             }
 
