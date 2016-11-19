@@ -23,7 +23,5 @@ namespace Medical_tp.View
         {
             InitializeComponent();
         }
-
-     
     }
 }

@@ -113,6 +113,7 @@ namespace Medical_tp.ViewModel
                // ViewModel.GestPatientsViewModel vm = new GestPatientsViewModel();
 
                 window.DataContext = vm;
+                
                 window.Show();
                 CloseSignal = true;
             }

@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Windows.Media;
+using System.Windows;
 
 namespace Medical_tp.ViewModel
 {
@@ -20,17 +21,35 @@ namespace Medical_tp.ViewModel
         private ObservableCollection<Model.User> _listUser = null;
         private string _searchPattern;
         private ImageSource _DisplayedImage;
-       
+        private bool _closeSignal;
+
         #endregion
 
         private ICommand _addCommand;
         private ICommand _modifyCommand;
         private ICommand _changeImage;
-        private ICommand _deleteCommand;       
+        private ICommand _deleteCommand;
+        private ICommand _openPatientViewCommand;
 
 
         #region getter / setter
-        
+
+        /// <summary>
+        /// indique si on doit fermer la fenêtre ou non
+        /// </summary>
+        public bool CloseSignal
+        {
+            get { return _closeSignal; }
+            set
+            {
+                if (_closeSignal != value)
+                {
+                    _closeSignal = value;
+                    OnPropertyChanged("CloseSignal");
+                }
+            }
+        }
+
         public ImageSource DisplayedImage
         {
             get { return _DisplayedImage; }
@@ -55,11 +74,17 @@ namespace Medical_tp.ViewModel
             set { _modifyCommand = value; }
         }
 
-        public ICommand changeImage
+        public ICommand ChangeImage
         {
             get { return _changeImage; }
             set { _changeImage = value; }
 
+        }
+        
+        public ICommand OpenPatientViewCommand
+        {
+            get { return _openPatientViewCommand; }
+            set { _openPatientViewCommand = value; }
         }
 
         /// <summary>
@@ -152,14 +177,15 @@ namespace Medical_tp.ViewModel
             AddCommand = new RelayCommand(param => AddPerson());
             ModifyCommand = new RelayCommand(param => ModifyPerson());
             DeleteCommand = new RelayCommand(param => DeletePerson());
-            changeImage = new RelayCommand(param => change_image());
+            ChangeImage = new RelayCommand(param => Change_image());
+            OpenPatientViewCommand = new RelayCommand(param => OpenPatientView());
         }
 
         /// <summary>
         /// action permettant d'ajouter une personne à la liste
         /// </summary>
 
-        private void change_image()
+        private void Change_image()
         {
             if (SelectedUser == null)
                 return;
@@ -238,7 +264,16 @@ namespace Medical_tp.ViewModel
             {
             }
         }
-        
+
+        private void OpenPatientView()
+        {
+             View.GestPatients window = new View.GestPatients();
+             ViewModel.GestPatientsViewModel vm = new GestPatientsViewModel();
+
+            window.DataContext = vm;
+            window.Show();
+            CloseSignal = true;
+        }
     }
 
 }
