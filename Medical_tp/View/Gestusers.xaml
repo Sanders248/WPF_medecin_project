@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="Accueil" Height="476.695" Width="858.051" xmlns:Behaviours="clr-namespace:Medical_tp">
     <Window.Resources>
+        <Style x:Key="StyleMainGrid">
+            <!--trigger pour fermer la fenêtre-->
+            <Style.Triggers>
+                <DataTrigger  Binding="{Binding CloseSignal}" Value="true">
+                    <Setter Property="Behaviours:WindowCloseBehaviour.Close" Value="true"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
         <DataTemplate x:Key="dtListUser">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Path=Name}"/>
@@ -19,9 +27,7 @@
         <ImageBrush ImageSource="/View/Ressources/main-page-Bg.jpg"></ImageBrush>
     </Window.Background>
 
-    <Grid>
-
-
+    <Grid Style="{StaticResource StyleMainGrid}">
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Users">
