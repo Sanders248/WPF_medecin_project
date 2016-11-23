@@ -9,9 +9,7 @@
       Title="LoginView">
   
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/View/Ressources/main-page-Bg.jpg"/>
-        </Grid.Background>
+
         <Grid HorizontalAlignment="Right" VerticalAlignment="top" Background="WhiteSmoke" Margin="0,6,5,0" Height="123">
 
             <Grid.ColumnDefinitions>

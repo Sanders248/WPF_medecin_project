@@ -58,7 +58,7 @@ namespace Medical_tp.DataAccess
             servPatient.Observations = null;
 
             servicePatient.AddPatient(servPatient);
-
+           
             return p;
         }
 
@@ -72,9 +72,11 @@ namespace Medical_tp.DataAccess
             catch
             { }
         }
-
+        
         public void updatePatient(Model.Patient patient)
         {
+            ServicePatient.Patient ptmp = servicePatient.GetPatient(patient.Id);
+
             servicePatient.DeletePatient(patient.Id);
 
             ServicePatient.Patient servPatient = new ServicePatient.Patient();

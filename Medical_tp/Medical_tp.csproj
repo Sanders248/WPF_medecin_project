@@ -92,6 +92,9 @@
     <Compile Include="ViewModel\GestUsersViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ObservationViewModel.cs" />
+    <Compile Include="View\MyDockPanel.xaml.cs">
+      <DependentUpon>MyDockPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GestPatients.xaml.cs">
       <DependentUpon>GestPatients.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataAccess\User.cs" />
+    <Page Include="View\MyDockPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GestPatients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

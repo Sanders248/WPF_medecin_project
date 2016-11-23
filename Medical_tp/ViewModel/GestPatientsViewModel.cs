@@ -147,19 +147,30 @@ namespace Medical_tp.ViewModel
         /// </summary>
         private void AddPerson()
         {
-            _listPatient.Add(patients.addNewPatient());
+            try { 
+                _listPatient.Add(patients.addNewPatient());
+            }
+            catch { }
         }
-       
+
         private void ModifyPerson()
         {
-            patients.updatePatient(SelectedPatient);
+            try
+            {
+                patients.updatePatient(SelectedPatient);
+            }
+            catch { }
         }
-        
+
         public void DeletePerson()
         {
-            patients.removePatient(SelectedPatient);
+            try
+            {
+                patients.removePatient(SelectedPatient);
 
-            _listPatient.Remove(SelectedPatient);
+                _listPatient.Remove(SelectedPatient);
+            }
+            catch { }
         }
     }
 }

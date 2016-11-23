@@ -16,6 +16,10 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="/View/Ressources/main-page-Bg.jpg"></ImageBrush>
+    </Window.Background>
+
 
     <Grid>
         <Grid.Background>
@@ -37,4 +41,5 @@
             <StackPanel></StackPanel>
         </DockPanel>
     </Grid>
+
 </Window>
