@@ -91,6 +91,7 @@
     <Compile Include="ViewModel\GestPatientsViewModel.cs" />
     <Compile Include="ViewModel\GestUsersViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\ObservationViewModel.cs" />
     <Compile Include="View\GestPatients.xaml.cs">
       <DependentUpon>GestPatients.xaml</DependentUpon>
     </Compile>
@@ -105,6 +106,9 @@
     </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Observation.xaml.cs">
+      <DependentUpon>Observation.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PrincipalWindow.xaml.cs">
       <DependentUpon>PrincipalWindow.xaml</DependentUpon>
@@ -132,6 +136,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Observation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

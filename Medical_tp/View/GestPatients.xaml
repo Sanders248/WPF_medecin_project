@@ -53,7 +53,7 @@
             </Menu>
             <StackPanel></StackPanel>
         </DockPanel>
-        
+
         <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Width="68" Margin="0,22,8,12" Grid.RowSpan="2">Name :</TextBlock>
         <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Width="68" Margin="0,23,8,13" Grid.RowSpan="2">Firstname :</TextBlock>
         <TextBlock Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" Width="68" Margin="0,22,8,147" Grid.RowSpan="2">Birthday :</TextBlock>
@@ -67,6 +67,7 @@
         <Button Grid.Row="5" Command="{Binding AddCommand}" Margin="96,3,2,0" Height="20" VerticalAlignment="Top">Add</Button>
         <Button Grid.Row="4" Command="{Binding DeleteCommand}" VerticalAlignment="Top" RenderTransformOrigin="2.875,0.462" Grid.Column="2" Margin="100,109,8,0" Height="20">Delete</Button>
         <Button Grid.Row="4" Command="{Binding ModifyCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.875,0.462" Grid.Column="2" Margin="4,109,0,0" Width="98" Height="20">Modify</Button>
+        <Button Grid.Row="5" Command="{Binding ObserveCommand}" HorizontalAlignment="Left" VerticalAlignment="Bottom" RenderTransformOrigin="2.875,0.462" Grid.Column="2" Margin="4,0,0,0" Width="98" Height="20">Observe</Button>
 
         <TextBlock Text="Search : " Grid.Row="1" Margin="4,5,2,14"/>
         <TextBox Grid.Row="1" Text="{Binding SearchPattern, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="3,20,3,30" Grid.RowSpan="2"/>

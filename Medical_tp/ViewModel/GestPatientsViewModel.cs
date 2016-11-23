@@ -21,6 +21,7 @@ namespace Medical_tp.ViewModel
         private ICommand _addCommand;
         private ICommand _modifyCommand;
         private ICommand _deleteCommand;
+        private ICommand _observeCommand;
 
 
         #region getter / setter
@@ -32,6 +33,11 @@ namespace Medical_tp.ViewModel
         {
             get { return _addCommand; }
             set { _addCommand = value; }
+        }
+        public ICommand ObserveCommand
+        {
+            get { return _observeCommand; }
+            set { _observeCommand = value; }
         }
 
         public ICommand ModifyCommand
@@ -125,6 +131,15 @@ namespace Medical_tp.ViewModel
             AddCommand = new RelayCommand(param => AddPerson());
             ModifyCommand = new RelayCommand(param => ModifyPerson());
             DeleteCommand = new RelayCommand(param => DeletePerson());
+            ObserveCommand = new RelayCommand(param => Observe());
+        }
+
+        public void Observe()
+        {
+            View.PrincipalWindow window = Medical_tp.Data.Session.Instance.GetPrincipalWindow();
+            ViewModel.ObservationViewModel vm = new ObservationViewModel(_selectedPatient);
+            window.DataContext = vm;
+            window.Content = new Medical_tp.View.Observation();
         }
 
         /// <summary>
