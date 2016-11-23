@@ -10,14 +10,15 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Medical_tp.View
 {
     /// <summary>
-    /// Interaction logic for Gestusers.xaml
+    /// Interaction logic for GestPatientsInfirmiere2.xaml
     /// </summary>
-    public partial class GestPatientsInfirmiere : Window
+    public partial class GestPatientsInfirmiere : Page
     {
         public GestPatientsInfirmiere()
         {

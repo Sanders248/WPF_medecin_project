@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace Medical_tp.ViewModel
 {
-    class GestPatientsViewModel : BaseViewModel
+    class GestPatientsViewModel : DockPanelViewModel
     {
         #region variables
         private Model.Patient _selectedPatient;

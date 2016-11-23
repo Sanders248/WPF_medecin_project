@@ -1,0 +1,23 @@
+﻿<Window x:Class="Medical_tp.View.PrincipalWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Medical_tp.View"
+        mc:Ignorable="d"
+        Title="PrincipalWindow" Height="600" Width="800"  xmlns:Behaviours="clr-namespace:Medical_tp">
+    <Window.Resources>
+        <Style x:Key="StyleMainGrid">
+            <!--trigger pour fermer la fenêtre-->
+            <Style.Triggers>
+                <DataTrigger  Binding="{Binding CloseSignal}" Value="true">
+                    <Setter Property="Behaviours:WindowCloseBehaviour.Close" Value="true"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Style="{StaticResource StyleMainGrid}">
+        
+    </Grid>
+</Window>

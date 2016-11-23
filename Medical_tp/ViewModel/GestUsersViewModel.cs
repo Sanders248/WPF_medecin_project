@@ -12,7 +12,7 @@ using System.Windows.Media;
 
 namespace Medical_tp.ViewModel
 {
-    class GestUsersViewModel : BaseViewModel
+    class GestUsersViewModel : DockPanelViewModel
     {
         #region variables
         private Model.User _selectedUser;
@@ -28,7 +28,6 @@ namespace Medical_tp.ViewModel
         private ICommand _modifyCommand;
         private ICommand _changeImage;
         private ICommand _deleteCommand;
-        private ICommand _openPatientViewCommand;
 
 
         #region getter / setter
@@ -80,12 +79,6 @@ namespace Medical_tp.ViewModel
 
         }
         
-        public ICommand OpenPatientViewCommand
-        {
-            get { return _openPatientViewCommand; }
-            set { _openPatientViewCommand = value; }
-        }
-
         /// <summary>
         /// filtre de recherche
         /// </summary>
@@ -177,7 +170,6 @@ namespace Medical_tp.ViewModel
             ModifyCommand = new RelayCommand(param => ModifyPerson());
             DeleteCommand = new RelayCommand(param => DeletePerson());
             ChangeImage = new RelayCommand(param => Change_image());
-            OpenPatientViewCommand = new RelayCommand(param => OpenPatientView());
         }
 
         /// <summary>
@@ -264,29 +256,7 @@ namespace Medical_tp.ViewModel
             }
         }
 
-        private void OpenPatientView()
-        {
-            Model.User actualUser = Data.Session.Instance.ActualUser;
-
-
-            if (actualUser.Role.Equals("Infirmiere") || actualUser.Role.Equals("Infirmière"))
-            {
-                View.GestPatientsInfirmiere window = new View.GestPatientsInfirmiere();
-                ViewModel.GestPatientsViewModel vm = new GestPatientsViewModel();
-                window.DataContext = vm;
-                window.Show();
-            }
-            else
-            {
-                View.GestPatients window = new View.GestPatients();
-                ViewModel.GestPatientsViewModel vm = new GestPatientsViewModel();
-                window.DataContext = vm;
-                window.Show();
-            }
-
-           
-            CloseSignal = true;
-        }
+      
     }
 
 }

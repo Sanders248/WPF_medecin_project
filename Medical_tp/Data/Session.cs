@@ -10,8 +10,16 @@ namespace Medical_tp.Data
     {
         private static Session instance;
         private Model.User actualUser;
+        private View.PrincipalWindow window;
 
         private Session() {
+            window = new Medical_tp.View.PrincipalWindow();
+            actualUser = null;
+        }
+
+        public View.PrincipalWindow GetPrincipalWindow()
+        {
+            return window;
         }
 
         public static Session Instance

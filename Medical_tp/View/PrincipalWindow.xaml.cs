@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Medical_tp.View
 {
     /// <summary>
-    /// Interaction logic for GestPatients2.xaml
+    /// Interaction logic for PrincipalWindow.xaml
     /// </summary>
-    public partial class GestPatients : Page
+    public partial class PrincipalWindow : Window
     {
-        public GestPatients()
+        public PrincipalWindow()
         {
             InitializeComponent();
         }

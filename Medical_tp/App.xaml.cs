@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Medical_tp
 {
@@ -17,10 +18,14 @@ namespace Medical_tp
         {
             base.OnStartup(e);
 
-            View.LoginView window = new Medical_tp.View.LoginView();
+            //  View.LoginView window = new Medical_tp.View.LoginView();
 
+            View.PrincipalWindow window = Medical_tp.Data.Session.Instance.GetPrincipalWindow();
+            
             ViewModel.LoginViewModel vm = new Medical_tp.ViewModel.LoginViewModel();
             window.DataContext = vm;
+            
+            window.Content = new Medical_tp.View.LoginView();
 
             window.Show();
         }

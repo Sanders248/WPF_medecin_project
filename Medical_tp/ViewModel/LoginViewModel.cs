@@ -105,26 +105,22 @@ namespace Medical_tp.ViewModel
         {
             if (_dataAccessUser.connexion(Login, Password))
             {
-               Model.User actualUser = Data.Session.Instance.ActualUser = DataAccess.User.getUser(Login);
+                Model.User actualUser = Data.Session.Instance.ActualUser = DataAccess.User.getUser(Login);
+
+                View.PrincipalWindow window = Medical_tp.Data.Session.Instance.GetPrincipalWindow();
+
+                ViewModel.GestUsersViewModel vm = new GestUsersViewModel();
+                window.DataContext = vm;
+
+                if (actualUser.Role.Equals("Infirmiere") || actualUser.Role.Equals("Infirmière"))
+                    window.Content = new Medical_tp.View.GestUsersInfirmiere();
+                else
+                    window.Content = new Medical_tp.View.GestUsers();
                 
 
-                if (actualUser.Role.Equals("Infirmiere") || actualUser.Role.Equals("Infirmière")) {
-                    View.GestUsersInfirmiere window = new View.GestUsersInfirmiere();
-                    ViewModel.GestUsersViewModel vm = new GestUsersViewModel();
-                    window.DataContext = vm;
-                    window.Show();
-                }
-                else {
-                    View.GestUsers window = new View.GestUsers();
-                    ViewModel.GestUsersViewModel vm = new GestUsersViewModel();
-                    window.DataContext = vm;
-                    window.Show();
-                }
-                
-                CloseSignal = true;
+              //  CloseSignal = true;
             }
 
         }
     }
 }
-
