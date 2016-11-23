@@ -46,7 +46,7 @@ namespace Medical_tp.ViewModel
             ListObservation = new ObservableCollection<Observation>(_current_patient.Observations);
 
             //configuration de la commande
-         //   AddCommand = new RelayCommand(param => AddPerson());
+            AddCommand = new RelayCommand(param => AddObservation());
          //   DeleteCommand = new RelayCommand(param => DeletePerson());
         }
        
@@ -109,16 +109,42 @@ namespace Medical_tp.ViewModel
                 {
                     _selectedObservation = value;
                     OnPropertyChanged("SelectedObservation");
-                 /*   try
-                    {
-                        DisplayedImage = LoadImage(_selectedUser.Picture);
-                        OnPropertyChanged("DisplayedImage");
-                    }
-                    catch
-                    {
-                    }*/
+                    /*   try
+                       {
+                           DisplayedImage = LoadImage(_selectedUser.Picture);
+                           OnPropertyChanged("DisplayedImage");
+                       }
+                       catch
+                       {
+                       }*/
                 }
             }
+        }
+
+        private void AddObservation()
+        {
+            try
+            {
+                Model.Observation obs = new Model.Observation();
+                _listObservation.Add(obs);
+                DataAccess.Observation.AddObservation(_current_patient, obs);
+            }
+            catch { }
+        }
+
+        //todo
+        private void DeleteObservation()
+        {
+            try
+            {
+                _listObservation.Remove(_selectedObservation);
+/*
+                DataAccess.Patient 
+                _current_patient
+
+                _listUser.Remove(SelectedUser);*/
+            }
+            catch { }
         }
     }
 }
