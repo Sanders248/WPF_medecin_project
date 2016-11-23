@@ -28,6 +28,15 @@ namespace Medical_tp.Model
             _bloodPressure = bloodPressure;
         }
 
+        public Observation()
+        {
+            _date = DateTime.Now;
+            _comment = "";
+            _prescription = new string[] { "" };
+            _pictures = null;
+            _weight = -1;
+            _bloodPressure = -1;
+        }
         #region getter / setter
 
         public int Weight
