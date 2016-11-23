@@ -20,26 +20,4 @@
         <ImageBrush ImageSource="/View/Ressources/main-page-Bg.jpg"></ImageBrush>
     </Window.Background>
 
-
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/View/Ressources/main-page-Bg.jpg"/>
-        </Grid.Background>
-        <DockPanel Grid.Row="0" Grid.ColumnSpan="100">
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="Users">
-                    <MenuItem Header="_Open" Command="{Binding OpenUserViewCommand}"/>
-                    <MenuItem Header="_Close"/>
-                    <MenuItem Header="_Save"/>
-                </MenuItem>
-                <MenuItem Header="Patients">
-                    <MenuItem Header="_Open" Command="{Binding OpenPatientViewCommand}"/>
-                    <MenuItem Header="_Close"/>
-                    <MenuItem Header="_Save"/>
-                </MenuItem>
-            </Menu>
-            <StackPanel></StackPanel>
-        </DockPanel>
-    </Grid>
-
 </Window>

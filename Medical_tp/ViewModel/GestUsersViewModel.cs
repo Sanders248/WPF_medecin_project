@@ -76,7 +76,6 @@ namespace Medical_tp.ViewModel
         {
             get { return _changeImage; }
             set { _changeImage = value; }
-
         }
         
         /// <summary>
