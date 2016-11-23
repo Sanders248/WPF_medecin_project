@@ -18,8 +18,6 @@
     </DataTemplate>
     </Page.Resources>
     
-    <Page.Background>White</Page.Background>
-
     <Grid Margin="2,0,-2,-33">
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
