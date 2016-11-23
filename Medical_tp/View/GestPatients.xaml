@@ -16,9 +16,6 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    <Page.Background>
-        <ImageBrush ImageSource="/View/Ressources/main-page-Bg.jpg"></ImageBrush>
-    </Page.Background>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -38,21 +35,7 @@
         <!--propriété à true pour pouvoir utiliser la collectionview-->
         <ListBox Grid.RowSpan="3" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource dtListPatient}" ItemsSource="{Binding ListPatient}" SelectedItem="{Binding SelectedPatient, Mode=TwoWay}" Margin="4,9,2,0" Grid.Row="2"/>
 
-        <DockPanel Grid.Row="0" Grid.ColumnSpan="100">
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="Users">
-                    <MenuItem Header="_Open" Command="{Binding OpenUserViewCommand}"/>
-                    <MenuItem Header="_Close"/>
-                    <MenuItem Header="_Save"/>
-                </MenuItem>
-                <MenuItem Header="Patients">
-                    <MenuItem Header="_Open" Command="{Binding OpenPatientViewCommand}"/>
-                    <MenuItem Header="_Close"/>
-                    <MenuItem Header="_Save"/>
-                </MenuItem>
-            </Menu>
-            <StackPanel></StackPanel>
-        </DockPanel>
+        <local:MyDockPanel Grid.Row="0" Grid.ColumnSpan="100"></local:MyDockPanel>
         
         <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Width="68" Margin="0,22,8,12" Grid.RowSpan="2">Name :</TextBlock>
         <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Width="68" Margin="0,23,8,13" Grid.RowSpan="2">Firstname :</TextBlock>

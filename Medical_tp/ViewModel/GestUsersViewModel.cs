@@ -208,15 +208,22 @@ namespace Medical_tp.ViewModel
 
         private void AddPerson()
         {
-            _listUser.Add(users.addNewUser());
+            try
+            {
+                _listUser.Add(users.addNewUser());
+            }
+            catch { }
         }
 
         private void DeletePerson()
         {
-            //maybe do in in xaml
-            users.removeUser(SelectedUser);
+            try
+            {
+                users.removeUser(SelectedUser);
 
-            _listUser.Remove(SelectedUser);
+                _listUser.Remove(SelectedUser);
+            }
+            catch { }
         }
 
         /// <summary>

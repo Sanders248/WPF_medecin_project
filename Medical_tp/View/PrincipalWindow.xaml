@@ -16,8 +16,11 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="/View/Ressources/main-page-Bg.jpg"></ImageBrush>
+    </Window.Background>
 
-    <Grid Style="{StaticResource StyleMainGrid}">
-        
+    <Grid  Style="{StaticResource StyleMainGrid}">
     </Grid>
+
 </Window>
