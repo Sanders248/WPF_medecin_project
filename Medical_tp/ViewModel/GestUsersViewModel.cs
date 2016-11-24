@@ -200,8 +200,6 @@ namespace Medical_tp.ViewModel
                 byte[] data;
                 JpegBitmapEncoder encoder = new JpegBitmapEncoder();
                 encoder.QualityLevel = 90;
-               
-     
                 encoder.Frames.Add(BitmapFrame.Create(image));
                 using (MemoryStream ms = new MemoryStream())
                 {
@@ -268,9 +266,6 @@ namespace Medical_tp.ViewModel
                 return false;
             }
             return true;
-        }
-
-      
+        } 
     }
-
 }
