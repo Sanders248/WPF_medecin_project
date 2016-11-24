@@ -42,9 +42,9 @@ namespace Medical_tp.DataAccess
             if (!checkUniqLogin(user))
                 return false;
 
-            user.RefLogin = user.Login;
 
             serviceClient.DeleteUser(user.RefLogin);
+            user.RefLogin = user.Login;
 
             ServiceUser.User servUsr = new ServiceUser.User();
 
@@ -83,8 +83,7 @@ namespace Medical_tp.DataAccess
         {
             try
             {
-                serviceClient.DeleteUser(user.Login);
-               
+                serviceClient.DeleteUser(user.RefLogin);
                 _listUser.Remove(user);
             }
             catch

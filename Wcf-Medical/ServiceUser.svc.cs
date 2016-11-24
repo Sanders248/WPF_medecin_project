@@ -82,7 +82,13 @@ namespace Wcf_Medical
             {
                 DaSingleton.GetInstance().ListUser = data.CreateListUser();
             }
-            DaSingleton.GetInstance().ListUser.Remove(DaSingleton.GetInstance().ListUser.Where(x => x.Login == login).First());
+            try
+            {
+                DaSingleton.GetInstance().ListUser.Remove(DaSingleton.GetInstance().ListUser.Where(x => x.Login == login).First());
+            }
+            catch {
+                return false;
+            }
             return true;
         }
 

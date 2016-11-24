@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Windows.Media;
+using System.Drawing;
 
 namespace Medical_tp.ViewModel
 {
@@ -138,6 +139,7 @@ namespace Medical_tp.ViewModel
                 if (_selectedUser != value)
                 {
                     _selectedUser = value;
+                
                     OnPropertyChanged("SelectedUser");
                     try
                     {
@@ -187,14 +189,19 @@ namespace Medical_tp.ViewModel
 
             if (result == true)
             {
+              
                 BitmapImage image = new BitmapImage();
                 image.BeginInit();
                 image.UriSource = new Uri(dlg.FileName);
+                image.DecodePixelWidth = 400;
                 image.EndInit();
                 DisplayedImage = image;
                 OnPropertyChanged("DisplayedImage");
                 byte[] data;
                 JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                encoder.QualityLevel = 90;
+               
+     
                 encoder.Frames.Add(BitmapFrame.Create(image));
                 using (MemoryStream ms = new MemoryStream())
                 {
@@ -250,16 +257,17 @@ namespace Medical_tp.ViewModel
             return image;
         }
 
-        private void ModifyPerson()
+        private bool ModifyPerson()
         {
             try
             {
-                if (!users.updateUser(SelectedUser))
-                    return; //error when updating a new user -> poppup login allready exist
+                users.updateUser(SelectedUser);
             }
             catch
             {
+                return false;
             }
+            return true;
         }
 
       
