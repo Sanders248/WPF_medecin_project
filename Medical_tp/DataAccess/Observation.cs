@@ -30,9 +30,7 @@ namespace Medical_tp.DataAccess
             serviceObservation.AddObservation(patient.Id, servObs);
         }
 
-      
-
-
+          
         /* private void LoadObservations()
          {
              try

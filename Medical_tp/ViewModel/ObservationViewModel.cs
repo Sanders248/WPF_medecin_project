@@ -19,16 +19,9 @@ namespace Medical_tp.ViewModel
         private Observation _selectedObservation;
 
         private ICommand _addCommand;
-        private ICommand _deleteCommand;
         private ICommand _createCommand;
 
-        public ICommand DeleteCommand
-        {
-            get { return _deleteCommand; }
-            set { _deleteCommand = value; }
-        }
-
-        public ICommand CreateCommand
+       public ICommand CreateCommand
         {
             get { return _createCommand; }
             set { _createCommand = value; }
@@ -150,22 +143,7 @@ namespace Medical_tp.ViewModel
             }
             catch { }
         }
-
-
-        //todo
-        private void DeleteObservation()
-        {
-            try
-            {
-                _listObservation.Remove(_selectedObservation);
-/*
-                DataAccess.Patient 
-                _current_patient
-
-                _listUser.Remove(SelectedUser);*/
-            }
-            catch { }
-        }
+        
     }
     
 }
