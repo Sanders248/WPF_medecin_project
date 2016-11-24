@@ -20,11 +20,18 @@ namespace Medical_tp.ViewModel
 
         private ICommand _addCommand;
         private ICommand _deleteCommand;
+        private ICommand _createCommand;
 
         public ICommand DeleteCommand
         {
             get { return _deleteCommand; }
             set { _deleteCommand = value; }
+        }
+
+        public ICommand CreateCommand
+        {
+            get { return _createCommand; }
+            set { _createCommand = value; }
         }
 
         public ICommand AddCommand
@@ -48,6 +55,7 @@ namespace Medical_tp.ViewModel
 
             //configuration de la commande
             AddCommand = new RelayCommand(param => AddObservation());
+            CreateCommand = new RelayCommand(param => CreateObservation());
          //   DeleteCommand = new RelayCommand(param => DeletePerson());
         }
        
@@ -110,6 +118,7 @@ namespace Medical_tp.ViewModel
                 {
                     _selectedObservation = value;
                     OnPropertyChanged("SelectedObservation");
+                    
                     /*   try
                        {
                            DisplayedImage = LoadImage(_selectedUser.Picture);
@@ -128,10 +137,20 @@ namespace Medical_tp.ViewModel
             {
                 Model.Observation obs = new Model.Observation();
                 _listObservation.Add(obs);
-                DataAccess.Observation.AddObservation(_current_patient, obs);
             }
             catch { }
         }
+
+         private void CreateObservation()
+        {
+            try
+            {
+                 DataAccess.Observation.AddObservation(_current_patient, _selectedObservation);
+                _selectedObservation.Exist = "True";
+            }
+            catch { }
+        }
+
 
         //todo
         private void DeleteObservation()

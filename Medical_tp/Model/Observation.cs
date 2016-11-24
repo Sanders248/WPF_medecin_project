@@ -11,14 +11,15 @@ namespace Medical_tp.Model
         #region variables
         private DateTime _date;
         private string _comment;
-        private string[] _prescription;
+        private string _prescription;
         private Byte[][] _pictures;
         private int _weight;
+        private string _exist;
 
         private int _bloodPressure;
         #endregion
 
-        public Observation(DateTime date, string comment, string[] prescription, Byte[][] picture, int weight, int bloodPressure)
+        public Observation(DateTime date, string comment, string prescription, Byte[][] picture, int weight, int bloodPressure, Boolean allreadyExist)
         {
             _date = date;
             _comment = comment;
@@ -26,16 +27,18 @@ namespace Medical_tp.Model
             _pictures = picture;
             _weight = weight;
             _bloodPressure = bloodPressure;
+            _exist = (allreadyExist == true ? "True" : "False");
         }
 
         public Observation()
         {
             _date = DateTime.Now;
             _comment = "";
-            _prescription = new string[] { "" };
+            _prescription = "";
             _pictures = null;
             _weight = -1;
             _bloodPressure = -1;
+            _exist = "False";
         }
         #region getter / setter
 
@@ -43,6 +46,12 @@ namespace Medical_tp.Model
         {
             get { return _weight; }
             set { _weight = value; }
+        }
+
+        public string Exist
+        {
+            get { return _exist; }
+            set { _exist = value; }
         }
         
         public int BloodPressure
@@ -57,7 +66,7 @@ namespace Medical_tp.Model
             set { _pictures = value; }
         }
         
-        public string[] Prescription
+        public string Prescription
         {
             get { return _prescription; }
             set { _prescription = value; }

@@ -29,7 +29,7 @@ namespace Medical_tp.DataAccess
                     try
                     {
                         foreach (ServicePatient.Observation o in p.Observations)
-                            obsList.Add(new Model.Observation(o.Date, o.Comment, o.Prescription, o.Pictures, o.Weight, o.BloodPressure));
+                            obsList.Add(new Model.Observation(o.Date, o.Comment, Tools.tabStringToString(o.Prescription), o.Pictures, o.Weight, o.BloodPressure, true));
                     }
                     catch { }
 
