@@ -8,7 +8,7 @@ namespace Medical_tp.DataAccess
 {
     class Patients
     {
-       
+
         private List<Model.Patient> _listPatient;
         public static ServicePatient.ServicePatientClient servicePatient = new ServicePatient.ServicePatientClient();
 
@@ -17,7 +17,7 @@ namespace Medical_tp.DataAccess
             _listPatient = new List<Model.Patient>();
             LoadPatients();
         }
-       
+
         private void LoadPatients()
         {
             try
@@ -29,7 +29,7 @@ namespace Medical_tp.DataAccess
                     try
                     {
                         foreach (ServicePatient.Observation o in p.Observations)
-                            obsList.Add(new Model.Observation(o.Date, o.Comment, o.Prescription, o.Pictures, o.Weight, o.BloodPressure));
+                            obsList.Add(new Model.Observation(o.Date, o.Comment, Tools.tabStringToString(o.Prescription), o.Pictures, o.Weight, o.BloodPressure, true));
                     }
                     catch { }
 
@@ -43,7 +43,7 @@ namespace Medical_tp.DataAccess
         {
             return _listPatient;
         }
-        
+
         public Model.Patient addNewPatient()
         {
             Model.Patient p = new Model.Patient(_listPatient[_listPatient.Count - 1].Id + 1);
@@ -58,7 +58,7 @@ namespace Medical_tp.DataAccess
             servPatient.Observations = null;
 
             servicePatient.AddPatient(servPatient);
-           
+
             return p;
         }
 
@@ -72,7 +72,7 @@ namespace Medical_tp.DataAccess
             catch
             { }
         }
-        
+
         public void updatePatient(Model.Patient patient)
         {
             ServicePatient.Patient ptmp = servicePatient.GetPatient(patient.Id);
@@ -88,5 +88,6 @@ namespace Medical_tp.DataAccess
 
             servicePatient.AddPatient(servPatient);
         }
+
     }
 }

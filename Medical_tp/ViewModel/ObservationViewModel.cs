@@ -17,14 +17,15 @@ namespace Medical_tp.ViewModel
         private string _searchPattern;
         private ObservableCollection<Model.Observation> _listObservation = null;
         private Observation _selectedObservation;
+        private string _displayCreateBtn;
 
         private ICommand _addCommand;
-        private ICommand _deleteCommand;
+        private ICommand _createCommand;
 
-        public ICommand DeleteCommand
+       public ICommand CreateCommand
         {
-            get { return _deleteCommand; }
-            set { _deleteCommand = value; }
+            get { return _createCommand; }
+            set { _createCommand = value; }
         }
 
         public ICommand AddCommand
@@ -39,15 +40,42 @@ namespace Medical_tp.ViewModel
             set { _current_patient = value; }
         }
 
+        public string DisplayCreatBtn
+        {
+            get { return _displayCreateBtn; }
+
+            set
+            {
+                if (_displayCreateBtn != value)
+                {
+                    _displayCreateBtn = value;
+                    OnPropertyChanged("DisplayCreatBtn");
+                }
+            }
+        }
+
+
+        private string VisibilityCreatButton()
+        {
+            if (_selectedObservation.Exist.Equals("True"))
+                return "Hidden";
+            else
+                return "Visible";
+
+        //    OnPropertyChanged("SelectedObservation");
+        }
+
         public ObservationViewModel(Patient patient)
         {
             DisplayName = "Display Observations";
 
+            _displayCreateBtn = "Hidden";
             _current_patient = patient;
             ListObservation = new ObservableCollection<Observation>(_current_patient.Observations);
 
             //configuration de la commande
             AddCommand = new RelayCommand(param => AddObservation());
+            CreateCommand = new RelayCommand(param => CreateObservation());
          //   DeleteCommand = new RelayCommand(param => DeletePerson());
         }
        
@@ -109,7 +137,9 @@ namespace Medical_tp.ViewModel
                 if (_selectedObservation != value)
                 {
                     _selectedObservation = value;
+                    DisplayCreatBtn = VisibilityCreatButton();
                     OnPropertyChanged("SelectedObservation");
+                    
                     /*   try
                        {
                            DisplayedImage = LoadImage(_selectedUser.Picture);
@@ -128,25 +158,20 @@ namespace Medical_tp.ViewModel
             {
                 Model.Observation obs = new Model.Observation();
                 _listObservation.Add(obs);
-                DataAccess.Observation.AddObservation(_current_patient, obs);
             }
             catch { }
         }
 
-        //todo
-        private void DeleteObservation()
+         private void CreateObservation()
         {
             try
             {
-                _listObservation.Remove(_selectedObservation);
-/*
-                DataAccess.Patient 
-                _current_patient
-
-                _listUser.Remove(SelectedUser);*/
+                 DataAccess.Observation.AddObservation(_current_patient, _selectedObservation);
+                _selectedObservation.Exist = "True";
             }
             catch { }
         }
+        
     }
     
 }
