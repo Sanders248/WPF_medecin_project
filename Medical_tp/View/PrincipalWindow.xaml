@@ -5,16 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Medical_tp.View"
         mc:Ignorable="d"
-        Title="PrincipalWindow" Height="600" Width="800"  xmlns:Behaviours="clr-namespace:Medical_tp">
+        Title="Medical" Height="600" Width="800"  xmlns:Behaviours="clr-namespace:Medical_tp">
+
     <Window.Resources>
-        <Style x:Key="StyleMainGrid">
-            <!--trigger pour fermer la fenêtre-->
-            <Style.Triggers>
-                <DataTrigger  Binding="{Binding CloseSignal}" Value="true">
-                    <Setter Property="Behaviours:WindowCloseBehaviour.Close" Value="true"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
+        <ResourceDictionary Source="Ressources/ResourceDictionary.xaml" />
     </Window.Resources>
     <Window.Background>
         <ImageBrush ImageSource="/View/Ressources/main-page-Bg.jpg"></ImageBrush>

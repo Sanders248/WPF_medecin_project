@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Medical_tp.View"
              mc:Ignorable="d" >
     <DockPanel>
-        <Menu DockPanel.Dock="Top">
+        <Menu DockPanel.Dock="Top" Background="AliceBlue">
+            
             <MenuItem Header="Users">
                 <MenuItem Header="_Open" Command="{Binding OpenUserViewCommand}"/>
                 <MenuItem Header="_Close"/>
