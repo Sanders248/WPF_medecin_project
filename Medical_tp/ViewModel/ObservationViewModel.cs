@@ -17,6 +17,7 @@ namespace Medical_tp.ViewModel
         private string _searchPattern;
         private ObservableCollection<Model.Observation> _listObservation = null;
         private Observation _selectedObservation;
+        private string _displayCreateBtn;
 
         private ICommand _addCommand;
         private ICommand _createCommand;
@@ -39,10 +40,36 @@ namespace Medical_tp.ViewModel
             set { _current_patient = value; }
         }
 
+        public string DisplayCreatBtn
+        {
+            get { return _displayCreateBtn; }
+
+            set
+            {
+                if (_displayCreateBtn != value)
+                {
+                    _displayCreateBtn = value;
+                    OnPropertyChanged("DisplayCreatBtn");
+                }
+            }
+        }
+
+
+        private string VisibilityCreatButton()
+        {
+            if (_selectedObservation.Exist.Equals("True"))
+                return "Hidden";
+            else
+                return "Visible";
+
+        //    OnPropertyChanged("SelectedObservation");
+        }
+
         public ObservationViewModel(Patient patient)
         {
             DisplayName = "Display Observations";
 
+            _displayCreateBtn = "Hidden";
             _current_patient = patient;
             ListObservation = new ObservableCollection<Observation>(_current_patient.Observations);
 
@@ -110,6 +137,7 @@ namespace Medical_tp.ViewModel
                 if (_selectedObservation != value)
                 {
                     _selectedObservation = value;
+                    DisplayCreatBtn = VisibilityCreatButton();
                     OnPropertyChanged("SelectedObservation");
                     
                     /*   try
