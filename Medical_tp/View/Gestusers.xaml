@@ -7,8 +7,6 @@
       mc:Ignorable="d" 
       Title="GestUsers"  xmlns:Behaviours="clr-namespace:Medical_tp" d:DesignWidth="722" d:DesignHeight="550">
 
-
-
     <Page.Resources>
         <DataTemplate x:Key="dtListUser">
             <StackPanel Orientation="Horizontal">
@@ -47,9 +45,9 @@
         <ListBox Grid.RowSpan="7" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource dtListUser}" ItemsSource="{Binding ListUser}" SelectedItem="{Binding SelectedUser, Mode=TwoWay}"  Grid.Row="2"/>
         <local:MyDockPanel Grid.Row="0" Grid.ColumnSpan="4" Margin="-20,0"></local:MyDockPanel>
 
-        <TextBlock Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right"   Grid.RowSpan="1" Width="38">Name :</TextBlock>
-        <TextBlock Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right"   Grid.RowSpan="1" Width="57">Firstname :</TextBlock>
-        <TextBlock Grid.Column="2" Grid.Row="4" HorizontalAlignment="Right"  Grid.RowSpan="1" Width="35">Login :</TextBlock>
+        <TextBlock Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" Grid.RowSpan="1" Width="38">Name :</TextBlock>
+        <TextBlock Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" Grid.RowSpan="1" Width="57">Firstname :</TextBlock>
+        <TextBlock Grid.Column="2" Grid.Row="4" HorizontalAlignment="Right" Grid.RowSpan="1" Width="35">Login :</TextBlock>
         <TextBlock Grid.Column="2" Grid.Row="5" HorizontalAlignment="Right" Grid.RowSpan="1" Width="55">Password :</TextBlock>
         <TextBlock Grid.Column="2" Grid.Row="6" HorizontalAlignment="Right" Grid.RowSpan="1" Width="29">Role :</TextBlock>
 
