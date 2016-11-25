@@ -162,13 +162,10 @@ namespace Medical_tp.ViewModel
         public GestPatientsViewModel()
         {
             DisplayName = "Display Patients";
-            
-            patients = new DataAccess.Patients();
 
-            //transformation en Observable collection pour l'interface
-            ListPatient = new ObservableCollection<Medical_tp.Model.Patient>(patients.getPatients());
+            loadPatients();
 
-            _displayBtns = Data.Session.Instance.VisibilityButtons();
+             _displayBtns = Data.Session.Instance.VisibilityButtons();
             _readOnlyFields = Data.Session.Instance.ReadOnlyFields();
 
             //configuration de la commande
@@ -176,6 +173,14 @@ namespace Medical_tp.ViewModel
             ModifyCommand = new RelayCommand(param => ModifyPerson());
             DeleteCommand = new RelayCommand(param => DeletePerson());
             ObserveCommand = new RelayCommand(param => Observe());
+        }
+
+        private void loadPatients()
+        {
+            patients = new DataAccess.Patients();
+
+            //transformation en Observable collection pour l'interface
+            ListPatient = new ObservableCollection<Medical_tp.Model.Patient>(patients.getPatients());
         }
 
         public void Observe()
@@ -196,6 +201,7 @@ namespace Medical_tp.ViewModel
         {
             try { 
                 _listPatient.Add(patients.addNewPatient());
+                loadPatients();
             }
             catch { }
         }
@@ -205,6 +211,7 @@ namespace Medical_tp.ViewModel
             try
             {
                 patients.updatePatient(SelectedPatient);
+                loadPatients();
             }
             catch { }
         }
