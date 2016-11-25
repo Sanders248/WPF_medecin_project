@@ -17,6 +17,7 @@ namespace Medical_tp.ViewModel
         private string _searchPattern;
         private ObservableCollection<Model.Observation> _listObservation = null;
         private Observation _selectedObservation;
+        private Model.Live _liveObs;
         private string _displayCreateBtn;
         private string _displayBtns;
 
@@ -81,17 +82,25 @@ namespace Medical_tp.ViewModel
         {
             DisplayName = "Display Observations";
 
+          
             _displayCreateBtn = "Hidden";
             _current_patient = patient;
             _displayBtns = Data.Session.Instance.VisibilityButtons();
 
             ListObservation = new ObservableCollection<Observation>(_current_patient.Observations);
 
+            DataAccess.Live.delegateUpdateLive syncLiveDelegate = syncLive;
+            DataAccess.Live dataLive = new DataAccess.Live(syncLiveDelegate);
+            _liveObs = dataLive.LiveObs;
+
+            System.ServiceModel.InstanceContext instContext = new System.ServiceModel.InstanceContext(dataLive);
+            ServiceLive.ServiceLiveClient slc = new ServiceLive.ServiceLiveClient(instContext);
+            slc.Subscribe();
+
             //configuration de la commande
             AddCommand = new RelayCommand(param => AddObservation());
             CreateCommand = new RelayCommand(param => CreateObservation());
-         //   DeleteCommand = new RelayCommand(param => DeletePerson());
-        }
+         }
        
         /// <summary>
         /// filtre de recherche
@@ -135,7 +144,6 @@ namespace Medical_tp.ViewModel
                 {
                     _listObservation = value;
                     OnPropertyChanged("ListObservation");
-
                 }
             }
         }
@@ -164,6 +172,25 @@ namespace Medical_tp.ViewModel
                        }*/
                 }
             }
+        }
+
+         public Model.Live LiveObs
+        {
+            get { return _liveObs; }
+            set
+            {
+                if (_liveObs != value)
+                {
+                    _liveObs = value;
+                   
+                    OnPropertyChanged("LiveObs");
+                }
+            }
+        }
+        
+        public void syncLive()
+        {
+            OnPropertyChanged("LiveObs");
         }
 
         private void AddObservation()

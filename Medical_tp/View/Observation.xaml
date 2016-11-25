@@ -57,5 +57,9 @@
         <TextBlock Text="Search : " Grid.Row="1" Margin="4,5,2,14"/>
         <TextBox Grid.Row="1" Text="{Binding SearchPattern, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="3,20,3,30" Grid.RowSpan="2"/>
 
+
+        <TextBox IsReadOnly="True" Grid.Column="2" Grid.Row="7" Text="{Binding LiveObs.HearthData}" Margin="2,22,7,0" Grid.RowSpan="2" Height="36" VerticalAlignment="Top"/>
+        <TextBox IsReadOnly="True" Grid.Column="1" Grid.Row="7" Text="{Binding LiveObs.TempData}" Margin="2,23,7,0" Height="40" VerticalAlignment="Top"></TextBox>
+            
     </Grid>
 </Page>

@@ -62,6 +62,8 @@
     <Compile Include="DataAccess\Patient.cs" />
     <Compile Include="DataAccess\Patients.cs" />
     <Compile Include="DataAccess\Users.cs" />
+    <Compile Include="DataAccess\Live.cs" />
+    <Compile Include="Model\Live.cs" />
     <Compile Include="Session\Session.cs" />
     <Compile Include="Model\Observation.cs" />
     <Compile Include="Model\Patient.cs" />
