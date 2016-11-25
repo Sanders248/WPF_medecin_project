@@ -32,7 +32,27 @@ namespace Medical_tp.DataAccess
             serviceObservation.AddObservation(patient.Id, servObs);
         }
 
-          
+
+        public static ServiceObservation.Observation[] getServiceObs(List<Model.Observation> obs)
+        {
+            List<ServiceObservation.Observation> listServObs = new List<ServiceObservation.Observation>();
+
+            foreach (Model.Observation oTmp in obs)
+            {
+                ServiceObservation.Observation servObs = new ServiceObservation.Observation();
+                servObs.BloodPressure = oTmp.BloodPressure;
+                servObs.Comment = oTmp.Comment;
+                servObs.Date = oTmp.Date;
+                servObs.Pictures = oTmp.Pictures;
+                servObs.Prescription = Tools.stringToTabString(oTmp.Prescription);
+                servObs.Weight = oTmp.Weight;
+
+                listServObs.Add(servObs);
+            }
+
+            return listServObs.ToArray();
+        }
+
         /* private void LoadObservations()
          {
              try
