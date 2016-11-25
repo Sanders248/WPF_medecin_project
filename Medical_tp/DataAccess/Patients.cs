@@ -55,11 +55,35 @@ namespace Medical_tp.DataAccess
             servPatient.Name = p.Name;
             servPatient.Birthday = p.Birthday;
             servPatient.Id = p.Id;
-            servPatient.Observations = null;
+            servPatient.Observations = getServiceObs(p.Observations);
 
             servicePatient.AddPatient(servPatient);
 
             return p;
+        }
+
+        public static ServicePatient.Observation[] getServiceObs(List<Model.Observation> obs)
+        {
+            List<ServicePatient.Observation> listServObs = new List<ServicePatient.Observation>();
+
+            if (obs == null)
+                return listServObs.ToArray();
+
+
+            foreach (Model.Observation oTmp in obs)
+            {
+                ServicePatient.Observation servObs = new ServicePatient.Observation();
+                servObs.BloodPressure = oTmp.BloodPressure;
+                servObs.Comment = oTmp.Comment;
+                servObs.Date = oTmp.Date;
+                servObs.Pictures = oTmp.Pictures;
+                servObs.Prescription = Tools.stringToTabString(oTmp.Prescription);
+                servObs.Weight = oTmp.Weight;
+
+                listServObs.Add(servObs);
+            }
+
+            return listServObs.ToArray();
         }
 
         public void removePatient(Model.Patient patient)
@@ -76,14 +100,16 @@ namespace Medical_tp.DataAccess
         public void updatePatient(Model.Patient patient)
         {
             ServicePatient.Patient ptmp = servicePatient.GetPatient(patient.Id);
+
             servicePatient.DeletePatient(patient.Id);
+
             ServicePatient.Patient servPatient = new ServicePatient.Patient();
             servPatient.Id = patient.Id;
             servPatient.Name = patient.Name;
             servPatient.Firstname = patient.Firstname;
-            servPatient.Observations = null;
+            servPatient.Observations = getServiceObs(patient.Observations);
             servPatient.Birthday = patient.Birthday;
-            servPatient.Observations = new ServicePatient.Observation[0];
+
             servicePatient.AddPatient(servPatient);
         }
 
