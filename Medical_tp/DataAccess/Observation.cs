@@ -27,6 +27,7 @@ namespace Medical_tp.DataAccess
             servObs.Date = obs.Date;
             servObs.Pictures = obs.Pictures;
             servObs.Prescription = Tools.stringToTabString(obs.Prescription);
+           
             servObs.Weight = obs.Weight;
             serviceObservation.AddObservation(patient.Id, servObs);
         }

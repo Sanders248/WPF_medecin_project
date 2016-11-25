@@ -254,11 +254,23 @@ namespace Medical_tp.ViewModel
         }
 
 
+        
+
         private bool ModifyPerson()
         {
             try
             {
-                users.updateUser(SelectedUser);
+                if (users.updateUser(SelectedUser) == false)
+                {
+
+                    BitmapImage image = new BitmapImage();
+                    image.BeginInit();
+                    image.UriSource = new Uri("pack://application:,,,/View/Ressources/Erreur.jpg");
+                    image.DecodePixelWidth = 250;
+                    image.EndInit();
+                    SelectedUser.Picture = Tools.ImageToByte(image);
+                    users.updateUser(SelectedUser);
+                }
             }
             catch
             {

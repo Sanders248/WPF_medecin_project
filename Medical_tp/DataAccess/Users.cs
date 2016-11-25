@@ -42,20 +42,25 @@ namespace Medical_tp.DataAccess
             if (!checkUniqLogin(user))
                 return false;
 
+            try
+            {
+                serviceClient.DeleteUser(user.RefLogin);
+                user.RefLogin = user.Login;
 
-            serviceClient.DeleteUser(user.RefLogin);
-            user.RefLogin = user.Login;
+                ServiceUser.User servUsr = new ServiceUser.User();
 
-            ServiceUser.User servUsr = new ServiceUser.User();
-
-            servUsr.Firstname = user.Firstname;
-            servUsr.Login = user.Login;
-            servUsr.Name = user.Name;
-            servUsr.Picture = user.Picture;
-            servUsr.Pwd = user.Pwd;
-            servUsr.Role = user.Role;
-
-            serviceClient.AddUser(servUsr);
+                servUsr.Firstname = user.Firstname;
+                servUsr.Login = user.Login;
+                servUsr.Name = user.Name;
+                servUsr.Picture = user.Picture;
+                servUsr.Pwd = user.Pwd;
+                servUsr.Role = user.Role;
+                serviceClient.AddUser(servUsr);
+            }
+            catch
+            {
+                return false;
+            }
 
             return true;
         }

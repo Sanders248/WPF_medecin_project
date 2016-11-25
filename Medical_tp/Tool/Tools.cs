@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,14 @@ namespace Medical_tp
 {
     class Tools
     {
+
+        public static Bitmap resizeImage(Bitmap imgToResize)
+        {
+            Bitmap resized = new Bitmap(imgToResize, new Size(imgToResize.Width / 4, imgToResize.Height / 4));
+            return resized;
+        }
+
+        
 
         public static Byte[][] ImageArrayToByteArray(ObservableCollection<ImageSource> images)
         {

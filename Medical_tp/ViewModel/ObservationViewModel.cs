@@ -241,7 +241,6 @@ namespace Medical_tp.ViewModel
                     ObservationImage.Add(Tools.LoadImage(b));
                 }
             }
-
         }
 
          public Model.Live LiveObs

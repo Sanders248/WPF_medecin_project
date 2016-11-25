@@ -228,7 +228,9 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="View\Ressources\Erreur.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceLive\" />
     <WCFMetadataStorage Include="Service References\ServiceObservation\" />

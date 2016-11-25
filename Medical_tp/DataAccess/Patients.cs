@@ -76,16 +76,14 @@ namespace Medical_tp.DataAccess
         public void updatePatient(Model.Patient patient)
         {
             ServicePatient.Patient ptmp = servicePatient.GetPatient(patient.Id);
-
             servicePatient.DeletePatient(patient.Id);
-
             ServicePatient.Patient servPatient = new ServicePatient.Patient();
             servPatient.Id = patient.Id;
             servPatient.Name = patient.Name;
             servPatient.Firstname = patient.Firstname;
             servPatient.Observations = null;
             servPatient.Birthday = patient.Birthday;
-
+            servPatient.Observations = new ServicePatient.Observation[0];
             servicePatient.AddPatient(servPatient);
         }
 

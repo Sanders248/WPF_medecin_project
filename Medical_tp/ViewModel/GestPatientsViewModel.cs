@@ -210,7 +210,9 @@ namespace Medical_tp.ViewModel
         {
             try
             {
+                SelectedPatient = SelectedPatient;
                 patients.updatePatient(SelectedPatient);
+
                 loadPatients();
             }
             catch { }
