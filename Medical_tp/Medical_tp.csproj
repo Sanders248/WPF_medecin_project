@@ -87,7 +87,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Tools.cs" />
+    <Compile Include="Tool\Tools.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\DockPanelViewModel.cs" />
     <Compile Include="ViewModel\GestPatientsViewModel.cs" />

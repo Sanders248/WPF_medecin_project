@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Data;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Medical_tp.ViewModel
 {
@@ -16,18 +17,24 @@ namespace Medical_tp.ViewModel
         private Patient _current_patient;
         private string _searchPattern;
         private ObservableCollection<Model.Observation> _listObservation = null;
+        private ObservableCollection<ImageSource> _observationImage = null;
         private Observation _selectedObservation;
         private string _displayCreateBtn;
 
         private ICommand _addCommand;
         private ICommand _createCommand;
+        private ICommand _changeImage;
 
-       public ICommand CreateCommand
+        public ICommand CreateCommand
         {
             get { return _createCommand; }
             set { _createCommand = value; }
         }
-
+        public ICommand ChangeImage
+        {
+            get { return _changeImage; }
+            set { _changeImage = value; }
+        }
         public ICommand AddCommand
         {
             get { return _addCommand; }
@@ -69,16 +76,43 @@ namespace Medical_tp.ViewModel
             _displayCreateBtn = "Hidden";
             _current_patient = patient;
             ListObservation = new ObservableCollection<Observation>(_current_patient.Observations);
-
+            ObservationImage = new ObservableCollection<ImageSource>();
+            init_imagetab();
             //configuration de la commande
             AddCommand = new RelayCommand(param => AddObservation());
             CreateCommand = new RelayCommand(param => CreateObservation());
-         //   DeleteCommand = new RelayCommand(param => DeletePerson());
+            ChangeImage = new RelayCommand(param => Change_image());
         }
-       
+
         /// <summary>
         /// filtre de recherche
         /// </summary>
+        /// 
+
+        public void Change_image()
+        {
+
+            if (_selectedObservation == null)
+                return;
+
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.DefaultExt = ".png";
+            dlg.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.UriSource = new Uri(dlg.FileName);
+                image.DecodePixelWidth = 250;
+                image.EndInit();
+                ObservationImage.Add(image);
+                OnPropertyChanged("ObservationImage");
+            }
+        }
+    
+
         public string SearchPattern
         {
             get { return _searchPattern; }
@@ -122,6 +156,19 @@ namespace Medical_tp.ViewModel
                 }
             }
         }
+        public ObservableCollection<ImageSource> ObservationImage
+        {
+            get { return _observationImage; }
+            set
+            {
+                if (_observationImage != value)
+                {
+                    _observationImage = value;
+                    OnPropertyChanged("ObservationImage");
+
+                }
+            }
+        }
 
         /// <summary>
         /// personne sélectionnée dans la liste
@@ -136,7 +183,8 @@ namespace Medical_tp.ViewModel
                     _selectedObservation = value;
                     DisplayCreatBtn = VisibilityCreatButton();
                     OnPropertyChanged("SelectedObservation");
-                    
+                    init_imagetab();
+                    OnPropertyChanged("ObservationImage");
                     /*   try
                        {
                            DisplayedImage = LoadImage(_selectedUser.Picture);
@@ -147,6 +195,20 @@ namespace Medical_tp.ViewModel
                        }*/
                 }
             }
+        }
+        private void init_imagetab()
+        {
+            
+            if(SelectedObservation != null)
+            {
+                ObservationImage.Clear();
+                if(SelectedObservation.Pictures != null)
+                foreach (Byte[] b in SelectedObservation.Pictures)
+                {
+                    ObservationImage.Add(Tools.LoadImage(b));
+                }
+            }
+
         }
 
         private void AddObservation()
@@ -159,16 +221,16 @@ namespace Medical_tp.ViewModel
             catch { }
         }
 
-         private void CreateObservation()
+        private void CreateObservation()
         {
             try
             {
-                 DataAccess.Observation.AddObservation(_current_patient, _selectedObservation);
+                SelectedObservation.Pictures = Tools.ImageArrayToByteArray(ObservationImage);
+                DataAccess.Observation.AddObservation(_current_patient, _selectedObservation);
                 _selectedObservation.Exist = "True";
             }
             catch { }
         }
-        
     }
     
 }

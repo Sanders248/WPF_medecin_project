@@ -11,6 +11,7 @@ using System.IO;
 using System.Windows.Media;
 using System.Drawing;
 
+
 namespace Medical_tp.ViewModel
 {
     class GestUsersViewModel : DockPanelViewModel
@@ -172,7 +173,7 @@ namespace Medical_tp.ViewModel
                     OnPropertyChanged("SelectedUser");
                     try
                     {
-                        DisplayedImage = LoadImage(_selectedUser.Picture);
+                        DisplayedImage = Tools.LoadImage(_selectedUser.Picture);
                         OnPropertyChanged("DisplayedImage");
                     }
                     catch
@@ -221,7 +222,6 @@ namespace Medical_tp.ViewModel
 
             if (result == true)
             {
-              
                 BitmapImage image = new BitmapImage();
                 image.BeginInit();
                 image.UriSource = new Uri(dlg.FileName);
@@ -229,16 +229,7 @@ namespace Medical_tp.ViewModel
                 image.EndInit();
                 DisplayedImage = image;
                 OnPropertyChanged("DisplayedImage");
-                byte[] data;
-                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-                encoder.QualityLevel = 90;
-                encoder.Frames.Add(BitmapFrame.Create(image));
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    encoder.Save(ms);
-                    data = ms.ToArray();
-                }
-                _selectedUser.Picture = data;
+                _selectedUser.Picture = Tools.ImageToByte(image);
             }
         }
 
@@ -262,30 +253,6 @@ namespace Medical_tp.ViewModel
             catch { }
         }
 
-        /// <summary>
-        /// /// ATTENTION SA BOUGE BABY //////////
-        /// </summary>
-        /// <param name="imageData"></param>
-        /// <returns></returns>
-        private static BitmapImage LoadImage(byte[] imageData)
-        {
-            if (imageData == null || imageData.Length == 0) return null;
-            var image = new BitmapImage();
-            
-            using (var mem = new MemoryStream(imageData))
-            {
-                image.CacheOption = BitmapCacheOption.None;
-                mem.Position = 0;
-                image.BeginInit();
-                image.CacheOption = BitmapCacheOption.None;
-                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.UriSource = null;
-                image.StreamSource = mem;
-                image.EndInit();
-            }
-            return image;
-        }
 
         private bool ModifyPerson()
         {
