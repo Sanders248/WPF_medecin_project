@@ -12,7 +12,7 @@
        
        
 
-        <Grid HorizontalAlignment="Right" VerticalAlignment="top" Background="WhiteSmoke" Margin="0,6,5,0" Height="123">
+        <Grid HorizontalAlignment="Right" VerticalAlignment="top" Background="WhiteSmoke" Margin="0,6,5,0" Height="160">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="90"/>
@@ -22,6 +22,8 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition/>
+                
+                <RowDefinition Height="25"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock Text="Connection" FontWeight="Bold" HorizontalAlignment="Center" Margin="18,2,63,0" FontSize="20" Grid.Column="1" Width="106" Height="24" VerticalAlignment="Top"/>
@@ -29,7 +31,15 @@
             <TextBox x:Name="txtLogin" Text="{Binding Login, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="3,3,0,3" MinWidth="100" HorizontalAlignment="Left" Width="175"/>
             <TextBlock Text="Mot de passe" Grid.Row="2" Margin="5,3,159,3" Grid.ColumnSpan="2"/>
             <TextBox x:Name="txtPassword" Text="{Binding Password, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" Margin="3,3,0,3" MinWidth="100" HorizontalAlignment="Left" Width="175"/>
-            <Button Content="Connection" Command="{Binding LoginCommand}" Grid.Row="3" Grid.Column="1" Margin="3,3,10,5"/>
+            <TextBlock Visibility="{Binding LogErreur}"  Text="Wrong Login/password" Grid.Column="1" Grid.Row="3" Margin="3,3,0,3" MinWidth="100" HorizontalAlignment="Left" Width="175">
+                <TextBlock.Style>
+                    <Style>
+                        <Setter Property="TextBlock.Foreground" Value="red" />
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <Button Content="Connection" Command="{Binding LoginCommand}" Grid.Row="4" Grid.Column="1" Margin="3,3,10,5"/>
         </Grid>
     </Grid>
 </Page>

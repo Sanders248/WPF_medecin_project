@@ -10,7 +10,7 @@ namespace Medical_tp.DataAccess
     {
         private List<Model.Observation> _listObservation;
         public static ServiceObservation.ServiceObservationClient serviceObservation = new ServiceObservation.ServiceObservationClient();
-
+        
         public Observation()
         {
             _listObservation = new List<Model.Observation>();
@@ -26,7 +26,6 @@ namespace Medical_tp.DataAccess
             servObs.Pictures = obs.Pictures;
             servObs.Prescription = Tools.stringToTabString(obs.Prescription);
             servObs.Weight = obs.Weight;
-
             serviceObservation.AddObservation(patient.Id, servObs);
         }
 

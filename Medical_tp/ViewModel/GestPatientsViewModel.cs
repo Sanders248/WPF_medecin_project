@@ -110,6 +110,7 @@ namespace Medical_tp.ViewModel
                 {
                     _selectedPatient = value;
                     OnPropertyChanged("SelectedPatient");
+                   
                 }
             }
         }
@@ -136,6 +137,9 @@ namespace Medical_tp.ViewModel
 
         public void Observe()
         {
+            if (_selectedPatient == null)
+                return;
+
             View.PrincipalWindow window = Medical_tp.Data.Session.Instance.GetPrincipalWindow();
             ViewModel.ObservationViewModel vm = new ObservationViewModel(_selectedPatient);
             window.DataContext = vm;

@@ -14,6 +14,7 @@ namespace Medical_tp.ViewModel
         private bool _closeSignal;
         private string _login;
         private string _password;
+        private string _logErreur;
         #endregion
 
         #region commandes
@@ -24,6 +25,14 @@ namespace Medical_tp.ViewModel
         /// <summary>
         /// mot de passe de la personne
         /// </summary>
+        /// 
+        public string LogErreur
+        {
+            get { return _logErreur; }
+            set { _logErreur = value;
+                OnPropertyChanged("LogErreur");
+            }
+        }
         public string Password
         {
             get { return _password; }
@@ -90,7 +99,7 @@ namespace Medical_tp.ViewModel
             base.DisplayName = "Page de login";
             Login = "";
             Password = "";
-
+            LogErreur = "Hidden";
             _dataAccessUser = new Medical_tp.DataAccess.User();
 
             //commandes
@@ -116,10 +125,11 @@ namespace Medical_tp.ViewModel
                     window.Content = new Medical_tp.View.GestUsersInfirmiere();
                 else
                     window.Content = new Medical_tp.View.GestUsers();
-                
-
-              //  CloseSignal = true;
+               
             }
+            else
+                LogErreur = "Visible";
+
 
         }
     }
