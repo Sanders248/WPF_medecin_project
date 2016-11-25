@@ -50,16 +50,18 @@
         <TextBlock Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" Grid.RowSpan="2" Margin="0,0,5,0" >Firstname</TextBlock>
         <TextBlock Grid.Column="2" Grid.Row="4" HorizontalAlignment="Right" Grid.RowSpan="1" Margin="0,0,5,0" >Birthday</TextBlock>
         <TextBlock Grid.Column="2" Grid.Row="5" HorizontalAlignment="Right" Grid.RowSpan="1" Margin="0,0,5,0" >id</TextBlock>
-        <TextBox Grid.Column="3" Grid.Row="2" Text="{Binding SelectedPatient.Name}"  Grid.RowSpan="1"/>
-        <TextBox Grid.Column="3" Grid.Row="3" Text="{Binding SelectedPatient.Firstname}"  Grid.RowSpan="1"/>
-        <DatePicker Grid.Column="3" Grid.Row="4" Grid.RowSpan="2" MinHeight="35" VerticalAlignment="Top" TextElement.FontSize="12"  SelectedDate="{Binding SelectedPatient.Birthday,Mode=TwoWay}"/>
+
+
+        <TextBox IsReadOnly="{Binding ReadOnlyFields}" Grid.Column="3" Grid.Row="2" Text="{Binding SelectedPatient.Name}"  Grid.RowSpan="1"/>
+        <TextBox IsReadOnly="{Binding ReadOnlyFields}" Grid.Column="3" Grid.Row="3" Text="{Binding SelectedPatient.Firstname}"  Grid.RowSpan="1"/>
+         <DatePicker IsEnabled="{Binding IsEnableDatePicker}" Grid.Column="3" Grid.Row="4" Grid.RowSpan="2" MinHeight="35"  VerticalAlignment="Top" TextElement.FontSize="12"  SelectedDate="{Binding SelectedPatient.Birthday,Mode=TwoWay}"/>
         <TextBox Grid.Column="3" IsReadOnly="True" Grid.Row="5" Text="{Binding SelectedPatient.Id}" Grid.RowSpan="1" />
         <StackPanel Grid.Row="4" />
 
-        <Button Grid.Row="9" Command="{Binding AddCommand}" Width="110" Height="20" HorizontalAlignment="Right"  VerticalAlignment="Top" >Add</Button>
-        <Button Grid.Row="9" Command="{Binding DeleteCommand}"  Grid.Column="0" Width="110" Height="20" HorizontalAlignment="Right"  VerticalAlignment="Bottom" >Delete</Button>
+        <Button Grid.Row="9" Visibility="{Binding DisplayBtns}" Command="{Binding AddCommand}" Width="110" Height="20" HorizontalAlignment="Right"  VerticalAlignment="Top" >Add</Button>
+        <Button Grid.Row="9" Visibility="{Binding DisplayBtns}" Command="{Binding DeleteCommand}"  Grid.Column="0" Width="110" Height="20" HorizontalAlignment="Right"  VerticalAlignment="Bottom" >Delete</Button>
 
-        <Button Grid.Row="6" Command="{Binding ModifyCommand}" HorizontalAlignment="Left" VerticalAlignment="Top"  Grid.Column="3" Width="110" Height="20" >Save</Button>
+        <Button Grid.Row="6" Visibility="{Binding DisplayBtns}" Command="{Binding ModifyCommand}" HorizontalAlignment="Left" VerticalAlignment="Top"  Grid.Column="3" Width="110" Height="20" >Save</Button>
         <Button Grid.Row="6" Command="{Binding ObserveCommand}" Grid.Column="3" Width="110" HorizontalAlignment="Left" Height="20" VerticalAlignment="Bottom" >Observe</Button>
 
         <TextBlock Text="Search : " Margin="3,31,3,19" Grid.RowSpan="2"/>

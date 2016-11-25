@@ -54,15 +54,12 @@ namespace Medical_tp.ViewModel
             }
         }
 
-
         private string VisibilityCreatButton()
         {
             if (_selectedObservation.Exist.Equals("True"))
                 return "Hidden";
             else
                 return "Visible";
-
-        //    OnPropertyChanged("SelectedObservation");
         }
 
         public ObservationViewModel(Patient patient)

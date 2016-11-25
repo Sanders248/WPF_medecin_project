@@ -121,11 +121,7 @@ namespace Medical_tp.ViewModel
                 ViewModel.GestUsersViewModel vm = new GestUsersViewModel();
                 window.DataContext = vm;
 
-                if (actualUser.Role.Equals("Infirmiere") || actualUser.Role.Equals("Infirmière"))
-                    window.Content = new Medical_tp.View.GestUsersInfirmiere();
-                else
-                    window.Content = new Medical_tp.View.GestUsers();
-               
+                window.Content = new Medical_tp.View.GestUsers();
             }
             else
                 LogErreur = "Visible";

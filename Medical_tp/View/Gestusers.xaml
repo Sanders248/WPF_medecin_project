@@ -55,17 +55,17 @@
         <TextBlock Grid.Column="2" Grid.Row="6" HorizontalAlignment="Right" Grid.RowSpan="1" Margin="0,0,5,0" >Role</TextBlock>
 
 
-        <TextBox Grid.Column="3" Grid.Row="2" Text="{Binding SelectedUser.Name}"  Grid.RowSpan="1"/>
-        <TextBox Grid.Column="3" Grid.Row="3" Text="{Binding SelectedUser.Firstname}"  Grid.RowSpan="1"/>
-        <TextBox Grid.Column="3" Grid.Row="4" Text="{Binding SelectedUser.Login}"  Grid.RowSpan="1" />
-        <TextBox Grid.Column="3" Grid.Row="5" Text="{Binding SelectedUser.Pwd}" Grid.RowSpan="1" />
-        <TextBox Grid.Column="3" Grid.Row="6" Text="{Binding SelectedUser.Role}" Grid.RowSpan="1"/>
+        <TextBox IsReadOnly="{Binding ReadOnlyFields}" Grid.Column="3" Grid.Row="2" Text="{Binding SelectedUser.Name}"  Grid.RowSpan="1"/>
+        <TextBox IsReadOnly="{Binding ReadOnlyFields}" Grid.Column="3" Grid.Row="3" Text="{Binding SelectedUser.Firstname}"  Grid.RowSpan="1"/>
+        <TextBox IsReadOnly="{Binding ReadOnlyFields}" Grid.Column="3" Grid.Row="4" Text="{Binding SelectedUser.Login}"  Grid.RowSpan="1" />
+        <TextBox IsReadOnly="{Binding ReadOnlyFields}" Grid.Column="3" Grid.Row="5" Text="{Binding SelectedUser.Pwd}" Grid.RowSpan="1" />
+        <TextBox IsReadOnly="{Binding ReadOnlyFields}" Grid.Column="3" Grid.Row="6" Text="{Binding SelectedUser.Role}" Grid.RowSpan="1"/>
         <StackPanel Grid.Row="4" />
 
-        <Button Grid.Row="9" Command="{Binding AddCommand}" Width="110" Height="20" HorizontalAlignment="Right"  VerticalAlignment="Top" >Add</Button>
-        <Button Grid.Row="9" Command="{Binding DeleteCommand}"  Grid.Column="0" Width="110" Height="20" HorizontalAlignment="Right"  VerticalAlignment="Bottom" >Delete</Button>
-        <Button Grid.Row="7" Command="{Binding ModifyCommand}" HorizontalAlignment="Left" VerticalAlignment="Top"  Grid.Column="3" Width="110" Height="20" >Save</Button>
-        <Button Grid.Row="7" Command="{Binding ChangeImage}" Grid.Column="3" Width="110" HorizontalAlignment="Left" Height="20" VerticalAlignment="Bottom" >Change image</Button>
+        <Button Visibility="{Binding DisplayBtns}" Grid.Row="9" Command="{Binding AddCommand}" Width="110" Height="20" HorizontalAlignment="Right"  VerticalAlignment="Top" >Add</Button>
+        <Button Visibility="{Binding DisplayBtns}" Grid.Row="9" Command="{Binding DeleteCommand}"  Grid.Column="0" Width="110" Height="20" HorizontalAlignment="Right"  VerticalAlignment="Bottom" >Delete</Button>
+        <Button Visibility="{Binding DisplayBtns}" Grid.Row="7" Command="{Binding ModifyCommand}" HorizontalAlignment="Left" VerticalAlignment="Top"  Grid.Column="3" Width="110" Height="20" >Save</Button>
+        <Button Visibility="{Binding DisplayBtns}" Grid.Row="7" Command="{Binding ChangeImage}" Grid.Column="3" Width="110" HorizontalAlignment="Left" Height="20" VerticalAlignment="Bottom" >Change image</Button>
 
 
 

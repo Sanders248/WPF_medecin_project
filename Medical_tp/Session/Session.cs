@@ -40,5 +40,20 @@ namespace Medical_tp.Data
             set { actualUser = value; }
         }
 
+        public string VisibilityButtons()
+        {
+            if (actualUser.Role.Equals("Infirmière") || actualUser.Role.Equals("Infirmiere"))
+                return "Hidden";
+            else
+                return "Visible";
+        }
+
+        public string ReadOnlyFields()
+        {
+            if (actualUser.Role.Equals("Infirmière") || actualUser.Role.Equals("Infirmiere"))
+                return "True";
+            else
+                return "False";
+        }
     }
 }

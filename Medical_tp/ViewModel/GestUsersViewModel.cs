@@ -30,6 +30,8 @@ namespace Medical_tp.ViewModel
         private ICommand _changeImage;
         private ICommand _deleteCommand;
 
+        private string _displayBtns;
+        private string _readOnlyFields;
 
         #region getter / setter
 
@@ -78,7 +80,34 @@ namespace Medical_tp.ViewModel
             get { return _changeImage; }
             set { _changeImage = value; }
         }
-        
+
+        public string DisplayBtns
+        {
+            get { return _displayBtns; }
+
+            set
+            {
+                if (_displayBtns != value)
+                {
+                    _displayBtns = value;
+                    OnPropertyChanged("DisplayBtns");
+                }
+            }
+        }
+
+        public string ReadOnlyFields
+        {
+            get { return _readOnlyFields; }
+
+            set
+            {
+                if (_readOnlyFields != value)
+                {
+                    _readOnlyFields = value;
+                    OnPropertyChanged("ReadOnlyFields");
+                }
+            }
+        }
         /// <summary>
         /// filtre de recherche
         /// </summary>
@@ -165,6 +194,9 @@ namespace Medical_tp.ViewModel
 
             //transformation en Observable collection pour l'interface
             ListUser = new ObservableCollection<Medical_tp.Model.User>(users.getUsers());
+
+            _displayBtns = Data.Session.Instance.VisibilityButtons();
+            _readOnlyFields = Data.Session.Instance.ReadOnlyFields();
 
             //configuration de la commande
             AddCommand = new RelayCommand(param => AddPerson());
