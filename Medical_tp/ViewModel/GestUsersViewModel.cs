@@ -22,6 +22,7 @@ namespace Medical_tp.ViewModel
         private ObservableCollection<Model.User> _listUser = null;
         private string _searchPattern;
         private ImageSource _DisplayedImage;
+        private Image imageAnim;
         private bool _closeSignal;
 
         #endregion
@@ -175,6 +176,7 @@ namespace Medical_tp.ViewModel
                     {
                         DisplayedImage = Tools.LoadImage(_selectedUser.Picture);
                         OnPropertyChanged("DisplayedImage");
+                       
                     }
                     catch
                     {

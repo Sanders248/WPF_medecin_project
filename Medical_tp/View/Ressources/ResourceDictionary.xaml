@@ -20,5 +20,16 @@
             </Setter.Value>
         </Setter>
     </Style>
-  
+    
+    <Style TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="MyFancyFont"/>
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="Black" />
+
+    </Style>
+
+    <Storyboard x:Key="AnimateTarget" RepeatBehavior="Forever">
+        <DoubleAnimation BeginTime="0:0:4" Duration="0:0:0.5" Storyboard.TargetProperty="(Image.Opacity)" Storyboard.TargetName="image1"  From="1.0" To="0.0" RepeatBehavior="Forever" AutoReverse="True" />
+    </Storyboard>
+    
 </ResourceDictionary>
