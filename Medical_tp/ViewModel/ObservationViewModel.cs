@@ -18,6 +18,7 @@ namespace Medical_tp.ViewModel
         private ObservableCollection<Model.Observation> _listObservation = null;
         private Observation _selectedObservation;
         private string _displayCreateBtn;
+        private string _displayBtns;
 
         private ICommand _addCommand;
         private ICommand _createCommand;
@@ -32,6 +33,20 @@ namespace Medical_tp.ViewModel
         {
             get { return _addCommand; }
             set { _addCommand = value; }
+        }
+
+        public string DisplayBtns
+        {
+            get { return _displayBtns; }
+
+            set
+            {
+                if (_displayBtns != value)
+                {
+                    _displayBtns = value;
+                    OnPropertyChanged("DisplayBtns");
+                }
+            }
         }
 
         public Patient Current_patient
@@ -68,6 +83,8 @@ namespace Medical_tp.ViewModel
 
             _displayCreateBtn = "Hidden";
             _current_patient = patient;
+            _displayBtns = Data.Session.Instance.VisibilityButtons();
+
             ListObservation = new ObservableCollection<Observation>(_current_patient.Observations);
 
             //configuration de la commande
