@@ -8,6 +8,7 @@
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontStyle" Value="Italic" />
         <Setter Property="Padding" Value="8,4" />
+        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -20,7 +21,22 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+    <Style x:Key="ButtonFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border>
+                        <Rectangle Margin="2"
+                     StrokeThickness="1"
+                     Stroke="#60000000"
+                     StrokeDashArray="1 2" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="TextBlock">
         <Setter Property="FontFamily" Value="MyFancyFont"/>
         <Setter Property="FontSize" Value="12" />

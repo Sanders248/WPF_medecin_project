@@ -10,7 +10,7 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using System.Windows.Media;
 using System.Drawing;
-
+using System.Windows.Media.Animation;
 
 namespace Medical_tp.ViewModel
 {
@@ -176,7 +176,6 @@ namespace Medical_tp.ViewModel
                     {
                         DisplayedImage = Tools.LoadImage(_selectedUser.Picture);
                         OnPropertyChanged("DisplayedImage");
-                       
                     }
                     catch
                     {
