@@ -225,7 +225,7 @@ namespace Medical_tp.ViewModel
                 BitmapImage image = new BitmapImage();
                 image.BeginInit();
                 image.UriSource = new Uri(dlg.FileName);
-                image.DecodePixelWidth = 400;
+                image.DecodePixelWidth = 250;
                 image.EndInit();
                 DisplayedImage = image;
                 OnPropertyChanged("DisplayedImage");

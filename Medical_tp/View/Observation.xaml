@@ -69,11 +69,19 @@
         <TextBox IsReadOnly="{Binding SelectedObservation.Exist}" Grid.Column="2" Grid.RowSpan="1" Grid.Row="8" Text="{Binding SelectedObservation.Weight}" />
         <TextBox IsReadOnly="{Binding SelectedObservation.Exist}" Grid.Column="2" Grid.Row="9" Text="{Binding SelectedObservation.BloodPressure}"/>
         <StackPanel Grid.Row="4" />
+
         <Button Grid.Row="10" Command="{Binding AddCommand}"  Height="20" Width="80" HorizontalAlignment="Right"  VerticalAlignment="Top">Add</Button>
         <Button Grid.Row="10" Visibility="{Binding DisplayCreatBtn}" Command="{Binding CreateCommand}" Width="80" Height="20" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Grid.Column="0" >Create</Button>
         <Button Grid.Row="11" Visibility="{Binding DisplayCreatBtn}" Command="{Binding ChangeImage}" Width="80" Height="20" HorizontalAlignment="Right"  VerticalAlignment="Top" Grid.Column="4" Margin="10,4,0,0" >Add Images</Button>
 
         <TextBlock Text="Search : " Margin="3,31,3,19" Grid.RowSpan="2"/>
         <TextBox Text="{Binding SearchPattern, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Margin="0,8,0,38" Grid.RowSpan="2"/>
+
+       
+
+        <TextBox IsReadOnly="True" Grid.Column="2" Grid.Row="12" Text="{Binding LiveObs.HearthData}" Margin="2,22,7,0" Grid.RowSpan="2" Height="36" VerticalAlignment="Top"/>
+        <TextBox IsReadOnly="True" Grid.Column="1" Grid.Row="12" Text="{Binding LiveObs.TempData}" Margin="2,23,7,0" Height="40" VerticalAlignment="Top"></TextBox>
+            
+
     </Grid>
 </Page>
