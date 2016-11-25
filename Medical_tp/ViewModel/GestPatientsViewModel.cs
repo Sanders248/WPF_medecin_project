@@ -16,6 +16,9 @@ namespace Medical_tp.ViewModel
         private DataAccess.Patients patients;
         private ObservableCollection<Model.Patient> _listPatient = null;
         private string _searchPattern;
+
+        private string _displayBtns;
+        private string _readOnlyFields;
         #endregion
 
         private ICommand _addCommand;
@@ -52,6 +55,43 @@ namespace Medical_tp.ViewModel
             set { _deleteCommand = value; }
         }
 
+        public string DisplayBtns
+        {
+            get { return _displayBtns; }
+
+            set
+            {
+                if (_displayBtns != value)
+                {
+                    _displayBtns = value;
+                    OnPropertyChanged("DisplayBtns");
+                }
+            }
+        }
+
+        public string ReadOnlyFields
+        {
+            get { return _readOnlyFields; }
+
+            set
+            {
+                if (_readOnlyFields != value)
+                {
+                    _readOnlyFields = value;
+                    OnPropertyChanged("ReadOnlyFields");
+                }
+            }
+        }
+
+        public string IsEnableDatePicker
+        {
+            get {
+                if (_readOnlyFields.Equals("True"))
+                    return "False";
+                else
+                    return "True";
+            }
+        }
 
         public string SearchPattern
         {
@@ -126,6 +166,9 @@ namespace Medical_tp.ViewModel
 
             //transformation en Observable collection pour l'interface
             ListPatient = new ObservableCollection<Medical_tp.Model.Patient>(patients.getPatients());
+
+            _displayBtns = Data.Session.Instance.VisibilityButtons();
+            _readOnlyFields = Data.Session.Instance.ReadOnlyFields();
 
             //configuration de la commande
             AddCommand = new RelayCommand(param => AddPerson());

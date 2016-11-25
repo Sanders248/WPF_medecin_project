@@ -100,14 +100,8 @@
     <Compile Include="View\GestPatients.xaml.cs">
       <DependentUpon>GestPatients.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\GestPatientsInfirmiere.xaml.cs">
-      <DependentUpon>GestPatientsInfirmiere.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\GestUsers.xaml.cs">
       <DependentUpon>GestUsers.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\GestUsersInfirmiere.xaml.cs">
-      <DependentUpon>GestUsersInfirmiere.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -132,15 +126,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\GestPatientsInfirmiere.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\GestUsers.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\GestUsersInfirmiere.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,8 +143,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Ressources\ResourceDictionary.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

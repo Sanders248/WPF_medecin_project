@@ -14,7 +14,10 @@ namespace Medical_tp.DataAccess
         public Observation()
         {
             _listObservation = new List<Model.Observation>();
-         //   LoadObservations();
+            //   LoadObservations();
+
+         //   ServiceLive.ServiceLiveClient slc = new ServiceLive.ServiceLiveClient(new System.ServiceModel.InstanceContext(new Model.Observation()));
+         
         }
 
         public static void AddObservation(Model.Patient patient, Model.Observation obs)
