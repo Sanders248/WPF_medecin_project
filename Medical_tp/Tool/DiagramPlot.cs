@@ -21,6 +21,8 @@ namespace Medical_tp.Tool
         public DiagramPlot(string title, OxyColor color)
         {
             model = new PlotModel { Title = title };
+            model.LegendMaxWidth = 100;
+
 
             horizontalAvancement = 0;
             points = new List<int>();
@@ -30,7 +32,6 @@ namespace Medical_tp.Tool
             lineSeries.Color = color;
             
             model.Series.Add(lineSeries);
-
         }
 
         public void updateValues(int newValue)
@@ -39,8 +40,15 @@ namespace Medical_tp.Tool
             {
                 points.Add(newValue);
                 lineSeries.Points.Add(new DataPoint(horizontalAvancement++, newValue));
-                model.InvalidatePlot(true);
 
+                if (points.Count > 100)
+                {
+                    lineSeries.Points.RemoveAt(0);
+                    model.Axes.RemoveAt(0);
+                    points.RemoveAt(0);
+                }
+
+                model.InvalidatePlot(true);
             }
             
         }
