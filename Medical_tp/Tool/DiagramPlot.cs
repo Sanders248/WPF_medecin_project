@@ -41,7 +41,7 @@ namespace Medical_tp.Tool
                 points.Add(newValue);
                 lineSeries.Points.Add(new DataPoint(horizontalAvancement++, newValue));
 
-                if (points.Count > 100)
+                if (points.Count > 50)
                 {
                     lineSeries.Points.RemoveAt(0);
                     model.Axes.RemoveAt(0);

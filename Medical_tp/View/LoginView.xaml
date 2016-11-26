@@ -41,5 +41,7 @@
 
             <Button Content="Connection" Command="{Binding LoginCommand}" Grid.Row="4" Grid.Column="1" Margin="3,3,10,5"/>
         </Grid>
+
+        <local:body3d Grid.Row="0" Grid.ColumnSpan="4" Margin="-20,0"></local:body3d>
     </Grid>
 </Page>
