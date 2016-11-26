@@ -71,7 +71,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataAccess\Observation.cs" />
-    <Compile Include="DataAccess\Patient.cs" />
     <Compile Include="DataAccess\Patients.cs" />
     <Compile Include="DataAccess\Users.cs" />
     <Compile Include="DataAccess\Live.cs" />
@@ -316,6 +315,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Animation\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Ressources\Heart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Ressources\temp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
