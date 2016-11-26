@@ -79,7 +79,7 @@ namespace Medical_tp.ViewModel
 
         private string VisibilityCreatButton()
         {
-            if (_selectedObservation.Exist.Equals("True"))
+            if (_selectedObservation == null ||_selectedObservation.Exist.Equals("True"))
                 return "Hidden";
             else
                 return "Visible";
@@ -107,7 +107,7 @@ namespace Medical_tp.ViewModel
             DataAccess.Live.delegateUpdateLive syncLiveDelegate = syncLive;
             DataAccess.Live dataLive = new DataAccess.Live(syncLiveDelegate);
             _liveObs = dataLive.LiveObs;
-
+            
             System.ServiceModel.InstanceContext instContext = new System.ServiceModel.InstanceContext(dataLive);
             ServiceLive.ServiceLiveClient slc = new ServiceLive.ServiceLiveClient(instContext);
             try
@@ -163,13 +163,14 @@ namespace Medical_tp.ViewModel
                             return false;
 
                         Model.Observation obsView = (Model.Observation)item;
-                        if (obsView.Date.CompareTo(value) < 1)
+                        String date = obsView.Date.ToString();
+                        if (date.Contains(value))
                             return true;
 
                         return false;
                     };
 
-                    OnPropertyChanged("SearchObservation");
+                    OnPropertyChanged("SearchPattern");
                 }
             }
         }
