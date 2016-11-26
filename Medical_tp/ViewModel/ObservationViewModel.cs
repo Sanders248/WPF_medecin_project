@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using OxyPlot;
 
 namespace Medical_tp.ViewModel
 {
@@ -22,6 +23,8 @@ namespace Medical_tp.ViewModel
         private Model.Live _liveObs;
         private string _displayCreateBtn;
         private string _displayBtns;
+        private Tool.DiagramPlot diagramTemp;
+        private Tool.DiagramPlot diagramPression;
 
         private ICommand _addCommand;
         private ICommand _createCommand;
@@ -85,14 +88,18 @@ namespace Medical_tp.ViewModel
                 return "Visible";
         }
 
+      
         public ObservationViewModel(Patient patient)
         {
             DisplayName = "Display Observations";
 
-
+           
             _displayCreateBtn = "Hidden";
             _current_patient = patient;
             _displayBtns = Data.Session.Instance.VisibilityButtons();
+
+            diagramTemp = new Tool.DiagramPlot("Body Temperature Diagram", OxyColors.Red);
+            diagramPression = new Tool.DiagramPlot("Blood Pression Diagram", OxyColors.Blue);
 
             ListObservation = new ObservableCollection<Observation>(_current_patient.Observations);
 
@@ -218,14 +225,6 @@ namespace Medical_tp.ViewModel
                     OnPropertyChanged("SelectedObservation");
                     init_imagetab();
                     OnPropertyChanged("ObservationImage");
-                    /*   try
-                       {
-                           DisplayedImage = LoadImage(_selectedUser.Picture);
-                           OnPropertyChanged("DisplayedImage");
-                       }
-                       catch
-                       {
-                       }*/
                 }
             }
         }
@@ -256,10 +255,26 @@ namespace Medical_tp.ViewModel
                 }
             }
         }
+
+        public PlotModel DiagTemp
+        {
+            get { return diagramTemp.model; }
+        }
+
+        public PlotModel DiagPression
+        {
+            get { return diagramPression.model; }
+        }
         
+
         public void syncLive()
         {
+            diagramTemp.updateValues((int)LiveObs.TempData);
+            diagramPression.updateValues((int)(100 * LiveObs.HearthData));
+
             OnPropertyChanged("LiveObs");
+            OnPropertyChanged("DiagTemp");
+            OnPropertyChanged("DiagPression");
         }
 
         private void AddObservation()
