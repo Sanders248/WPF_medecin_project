@@ -320,9 +320,7 @@
   <ItemGroup>
     <Resource Include="View\Ressources\main-page-Bg.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Animation\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="View\Ressources\Heart.png" />
   </ItemGroup>

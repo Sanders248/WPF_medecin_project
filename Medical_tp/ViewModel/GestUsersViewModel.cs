@@ -22,7 +22,7 @@ namespace Medical_tp.ViewModel
         private ObservableCollection<Model.User> _listUser = null;
         private string _searchPattern;
         private ImageSource _DisplayedImage;
-        private Image imageAnim;
+       
         private bool _closeSignal;
 
         #endregion
@@ -199,12 +199,16 @@ namespace Medical_tp.ViewModel
 
             _displayBtns = Data.Session.Instance.VisibilityButtons();
             _readOnlyFields = Data.Session.Instance.ReadOnlyFields();
-
             //configuration de la commande
             AddCommand = new RelayCommand(param => AddPerson());
             ModifyCommand = new RelayCommand(param => ModifyPerson());
             DeleteCommand = new RelayCommand(param => DeletePerson());
             ChangeImage = new RelayCommand(param => Change_image());
+            if (ListUser.Count > 0)
+            {
+                SelectedUser = ListUser[0];
+                OnPropertyChanged("SelectedUser");
+            }
         }
 
         /// <summary>
@@ -226,7 +230,7 @@ namespace Medical_tp.ViewModel
                 BitmapImage image = new BitmapImage();
                 image.BeginInit();
                 image.UriSource = new Uri(dlg.FileName);
-                image.DecodePixelWidth = 250;
+                image.DecodePixelWidth = 200;
                 image.EndInit();
                 DisplayedImage = image;
                 OnPropertyChanged("DisplayedImage");
@@ -264,11 +268,7 @@ namespace Medical_tp.ViewModel
                 if (users.updateUser(SelectedUser) == false)
                 {
 
-                    BitmapImage image = new BitmapImage();
-                    image.BeginInit();
-                    image.UriSource = new Uri("pack://application:,,,/View/Ressources/Erreur.jpg");
-                    image.DecodePixelWidth = 250;
-                    image.EndInit();
+                    BitmapImage image = (BitmapImage)_DisplayedImage;
                     SelectedUser.Picture = Tools.ImageToByte(image);
                     users.updateUser(SelectedUser);
                 }

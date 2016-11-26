@@ -25,7 +25,7 @@ namespace Medical_tp.DataAccess
                 foreach (ServicePatient.Patient p in servicePatient.GetListPatient())
                 {
                     List<Model.Observation> obsList = new List<Model.Observation>();
-
+      
                     try
                     {
                         foreach (ServicePatient.Observation o in p.Observations)
@@ -56,9 +56,7 @@ namespace Medical_tp.DataAccess
             servPatient.Birthday = p.Birthday;
             servPatient.Id = p.Id;
             servPatient.Observations = getServiceObs(p.Observations);
-
             servicePatient.AddPatient(servPatient);
-
             return p;
         }
 
@@ -94,7 +92,8 @@ namespace Medical_tp.DataAccess
                 _listPatient.Remove(patient);
             }
             catch
-            { }
+            {
+            }
         }
 
         public void updatePatient(Model.Patient patient)
@@ -107,9 +106,9 @@ namespace Medical_tp.DataAccess
             servPatient.Id = patient.Id;
             servPatient.Name = patient.Name;
             servPatient.Firstname = patient.Firstname;
-            servPatient.Observations = getServiceObs(patient.Observations);
+            servPatient.Observations = new ServicePatient.Observation[0];
+            
             servPatient.Birthday = patient.Birthday;
-
             servicePatient.AddPatient(servPatient);
         }
 

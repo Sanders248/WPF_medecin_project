@@ -110,7 +110,6 @@ namespace Medical_tp.ViewModel
             CreateCommand = new RelayCommand(param => CreateObservation());
             ChangeImage = new RelayCommand(param => Change_image());
 
-
             DataAccess.Live.delegateUpdateLive syncLiveDelegate = syncLive;
             DataAccess.Live dataLive = new DataAccess.Live(syncLiveDelegate);
             _liveObs = dataLive.LiveObs;
@@ -121,9 +120,15 @@ namespace Medical_tp.ViewModel
             { 
                 slc.Subscribe();
             }catch
-            {   }
-          
-         }
+            {
+            }
+            if (ListObservation.Count > 0)
+            {
+                SelectedObservation = ListObservation[0];
+                OnPropertyChanged("SelectedObservation");
+            }
+
+        }
        
         /// <summary>
         /// filtre de recherche
