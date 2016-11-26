@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:oxy="http://oxyplot.org/wpf"
       xmlns:local="clr-namespace:Medical_tp.View"
       mc:Ignorable="d" 
       Title="Observation">
@@ -30,10 +31,16 @@
             <RowDefinition Height="41" />
             <RowDefinition Height="41" />
             <RowDefinition Height="41" />
+
             <RowDefinition Height="41" />
             <RowDefinition Height="41" />
             <RowDefinition Height="41" />
             <RowDefinition Height="41" />
+            <RowDefinition Height="41" />
+            <RowDefinition Height="41" />
+            <RowDefinition Height="41" />
+            <RowDefinition Height="41" />
+
             <RowDefinition  />
 
 
@@ -58,7 +65,7 @@
         </ListView>
 
 
-        <local:MyDockPanel Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="4" Margin="-20,0,-20,0"></local:MyDockPanel>
+        <local:MyDockPanel Grid.ColumnSpan="4" Margin="-20,0,-20,0"></local:MyDockPanel>
         <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.RowSpan="1">Comment</TextBlock>
         <TextBlock Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.RowSpan="1">Prescription</TextBlock>
         <TextBlock Grid.Column="1" Grid.Row="8" HorizontalAlignment="Right" Margin="0,0,10,0">Weight</TextBlock>
@@ -81,6 +88,12 @@
         <TextBlock Text="Search : " Margin="3,31,3,19" Grid.RowSpan="2"/>
         <TextBox Text="{Binding SearchPattern, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Margin="0,8,0,38" Grid.RowSpan="2"/>
 
+
+
+        
+
+        <oxy:PlotView Grid.Row="12" Grid.ColumnSpan="2" Grid.RowSpan="4"   Margin="0,0" Model="{Binding DiagTemp, Mode=OneWay}"/>
+        <oxy:PlotView Grid.Row="12" Grid.ColumnSpan="2" Grid.RowSpan="4" Grid.Column="2" Margin="2,0" Model="{Binding DiagPression, Mode=OneWay}"/>
 
 
         <TextBox Background="Transparent" BorderThickness="0" Foreground="white" IsReadOnly="True" Grid.Column="3" Grid.Row="1" Text="{Binding LiveObs.HearthData}"  Margin="60,0,0,16"  />
