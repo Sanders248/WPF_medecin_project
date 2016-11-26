@@ -175,6 +175,11 @@ namespace Medical_tp.ViewModel
             ModifyCommand = new RelayCommand(param => ModifyPerson());
             DeleteCommand = new RelayCommand(param => DeletePerson());
             ObserveCommand = new RelayCommand(param => Observe());
+            if (ListPatient.Count > 0)
+            {
+                SelectedPatient = ListPatient[0];
+                OnPropertyChanged("SelectedPatient");
+            }
         }
 
         private void loadPatients()

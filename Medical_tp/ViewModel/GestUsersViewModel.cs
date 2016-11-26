@@ -199,12 +199,16 @@ namespace Medical_tp.ViewModel
 
             _displayBtns = Data.Session.Instance.VisibilityButtons();
             _readOnlyFields = Data.Session.Instance.ReadOnlyFields();
-
             //configuration de la commande
             AddCommand = new RelayCommand(param => AddPerson());
             ModifyCommand = new RelayCommand(param => ModifyPerson());
             DeleteCommand = new RelayCommand(param => DeletePerson());
             ChangeImage = new RelayCommand(param => Change_image());
+            if (ListUser.Count > 0)
+            {
+                SelectedUser = ListUser[0];
+                OnPropertyChanged("SelectedUser");
+            }
         }
 
         /// <summary>
