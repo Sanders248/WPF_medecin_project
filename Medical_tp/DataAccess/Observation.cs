@@ -48,46 +48,6 @@ namespace Medical_tp.DataAccess
 
             return listServObs.ToArray();
         }
-
-        /* private void LoadObservations()
-         {
-             try
-             {
-                 foreach (ServiceObservation.Observation o in serviceObservation. GetListObservation())
-                 {
-                     List<Model.Observation> obsList = new List<Model.Observation>();
-
-                     try
-                     {
-                         foreach (ServicePatient.Observation o in p.Observations)
-                             obsList.Add(new Model.Observation(o.Date, o.Comment, o.Prescription, o.Pictures, o.Weight, o.BloodPressure));
-                     }
-                     catch { }
-
-                     _listPatient.Add(new Model.Patient(p.Name, p.Firstname, p.Birthday, p.Id, obsList));
-                 }
-             }
-             catch { }
-         }*/
-
-
-        /*
-        public Model.Observation getObservation()
-        {
-            ServiceObservation.Observation obsService = serviceObservationCient.
-            Model.Observation obs = new Model.Observation();
-
-            return obs;
-        }
-
-        public Model.Patient getPatientFromList(List<Model.Patient> listPatient, int id)
-        {
-            foreach (Model.Patient p in listPatient)
-                if (p.Id.Equals(id))
-                    return p;
-
-            return null;
-        }*/
-
+        
     }
 }

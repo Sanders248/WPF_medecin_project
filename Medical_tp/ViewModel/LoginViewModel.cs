@@ -22,10 +22,7 @@ namespace Medical_tp.ViewModel
         #endregion
 
         #region getter / setter
-        /// <summary>
-        /// mot de passe de la personne
-        /// </summary>
-        /// 
+
         public string LogErreur
         {
             get { return _logErreur; }
@@ -125,8 +122,6 @@ namespace Medical_tp.ViewModel
             }
             else
                 LogErreur = "Visible";
-
-
         }
     }
 }

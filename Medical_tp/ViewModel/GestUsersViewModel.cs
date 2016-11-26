@@ -194,12 +194,11 @@ namespace Medical_tp.ViewModel
 
             users = new DataAccess.Users();
 
-            //transformation en Observable collection pour l'interface
             ListUser = new ObservableCollection<Medical_tp.Model.User>(users.getUsers());
 
             _displayBtns = Data.Session.Instance.VisibilityButtons();
             _readOnlyFields = Data.Session.Instance.ReadOnlyFields();
-            //configuration de la commande
+
             AddCommand = new RelayCommand(param => AddPerson());
             ModifyCommand = new RelayCommand(param => ModifyPerson());
             DeleteCommand = new RelayCommand(param => DeletePerson());
@@ -210,11 +209,7 @@ namespace Medical_tp.ViewModel
                 OnPropertyChanged("SelectedUser");
             }
         }
-
-        /// <summary>
-        /// action permettant d'ajouter une personne à la liste
-        /// </summary>
-
+        
         private void Change_image()
         {
             if (SelectedUser == null)
@@ -257,10 +252,7 @@ namespace Medical_tp.ViewModel
             }
             catch { }
         }
-
-
         
-
         private bool ModifyPerson()
         {
             try

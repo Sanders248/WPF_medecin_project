@@ -45,8 +45,6 @@ namespace Medical_tp.ViewModel
             window.DataContext = vm;
 
             window.Content = new Medical_tp.View.GestPatients();
-            
-            // CloseSignal = true;
         }
 
         protected static void OpenUserView()
@@ -59,8 +57,6 @@ namespace Medical_tp.ViewModel
             window.DataContext = vm;
 
             window.Content = new Medical_tp.View.GestUsers();
-        
-            // CloseSignal = true;
         }
     }
     

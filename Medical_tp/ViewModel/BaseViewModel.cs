@@ -16,7 +16,7 @@ namespace Medical_tp.ViewModel
         {
         }
 
-        #endregion // Constructor
+        #endregion 
 
         #region DisplayName
 

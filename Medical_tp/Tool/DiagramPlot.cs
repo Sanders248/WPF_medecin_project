@@ -44,7 +44,6 @@ namespace Medical_tp.Tool
                 if (points.Count > 50)
                 {
                     lineSeries.Points.RemoveAt(0);
-                    model.Axes.RemoveAt(0);
                     points.RemoveAt(0);
                 }
 

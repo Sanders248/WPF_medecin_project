@@ -99,7 +99,7 @@ namespace Medical_tp.ViewModel
             _displayBtns = Data.Session.Instance.VisibilityButtons();
 
             diagramTemp = new Tool.DiagramPlot("Body Temperature Diagram", OxyColors.Red);
-            diagramPression = new Tool.DiagramPlot("Blood Pression Diagram", OxyColors.Blue);
+            diagramPression = new Tool.DiagramPlot("Blood Pression Diagram (Value * 100)", OxyColors.Blue);
 
             ListObservation = new ObservableCollection<Observation>(_current_patient.Observations);
 
@@ -130,11 +130,6 @@ namespace Medical_tp.ViewModel
 
         }
        
-        /// <summary>
-        /// filtre de recherche
-        /// </summary>
-        /// 
-
         public void Change_image()
         {
 
@@ -158,7 +153,6 @@ namespace Medical_tp.ViewModel
             }
         }
     
-
         public string SearchPattern
         {
             get { return _searchPattern; }
@@ -202,6 +196,7 @@ namespace Medical_tp.ViewModel
                 }
             }
         }
+
         public ObservableCollection<ImageSource> ObservationImage
         {
             get { return _observationImage; }
@@ -216,9 +211,6 @@ namespace Medical_tp.ViewModel
             }
         }
 
-        /// <summary>
-        /// personne sélectionnée dans la liste
-        /// </summary>
         public Model.Observation SelectedObservation
         {
             get { return _selectedObservation; }

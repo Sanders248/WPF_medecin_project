@@ -32,7 +32,6 @@ namespace Medical_tp.DataAccess
             return u;
         }
 
-        //todo see what happend when we add a enw user then modify it
         public void updateUser(Model.User user)
         {
             ServiceUser.User u = serviceClient.GetUser(user.RefLogin);
@@ -62,36 +61,6 @@ namespace Medical_tp.DataAccess
 
         }
 
-      /*  public void setFirstname(string login, string newFirstName)
-        {
-            serviceClient.GetUser(login).Firstname = newFirstName;
-        }
-
-        public void setLogin(string login, string newLogin)
-        {
-            serviceClient.GetUser(login).Login = newLogin;
->>>>>>> 7dff60599db1789343a13c06ad270bb20fb32626
-        }
-
-        public void setName(string login, string newName)
-        {
-            serviceClient.GetUser(login).Name = newName;
-        }
-
-        public void setPicture(string login, byte[] newPicture)
-        {
-            serviceClient.GetUser(login).Picture = newPicture;
-        }
-
-        public void setPassword(string login, string newPwd)
-        {
-            serviceClient.GetUser(login).Pwd = newPwd;
-        }
-
-        public void setRole(string login, string newRole)
-        {
-            serviceClient.GetUser(login).Role = newRole;
-        }
-        */
+    
     }
 }

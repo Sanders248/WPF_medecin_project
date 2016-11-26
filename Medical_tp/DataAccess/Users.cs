@@ -36,7 +36,6 @@ namespace Medical_tp.DataAccess
             return true;
         }
 
-        //todo check the login is unique !!
         public bool updateUser(Model.User user)
         {
             if (!checkUniqLogin(user))

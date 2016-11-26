@@ -31,7 +31,6 @@ namespace Medical_tp.Model
             _refLogin = login;
         }
 
-        //todo add an sha1 or md5 on datetimelogin
         public User()
         {
             string newLogin = "newLogin_" +  DateTime.Now.ToString();
