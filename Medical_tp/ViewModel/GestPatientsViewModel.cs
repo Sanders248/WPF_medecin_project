@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Windows.Data;
 using System.Windows.Input;
+using Medical_tp.Model;
+using Medical_tp.DataAccess;
 
 namespace Medical_tp.ViewModel
 {
@@ -211,10 +213,22 @@ namespace Medical_tp.ViewModel
             try
             {
                 patients.updatePatient(SelectedPatient);
-
-                loadPatients();
             }
             catch { }
+                Patient p = SelectedPatient;
+                loadPatients();
+                p.Id = ListPatient[ListPatient.Count - 1].Id;
+                foreach (var e in p.Observations)
+                {
+                    try
+                    {
+                        DataAccess.Observation.AddObservation(p, e);
+                    }
+                    catch {
+
+                    }
+                }
+                loadPatients();  
         }
 
         public void DeletePerson()

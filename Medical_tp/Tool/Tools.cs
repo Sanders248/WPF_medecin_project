@@ -48,9 +48,9 @@ namespace Medical_tp
                 mem.Position = 0;
                 image.BeginInit();
                 image.CacheOption = BitmapCacheOption.None;
-                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
                 image.CacheOption = BitmapCacheOption.OnLoad;
                 image.UriSource = null;
+                image.DecodePixelWidth = 200;
                 image.StreamSource = mem;
                 image.EndInit();
             }

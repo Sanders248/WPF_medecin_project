@@ -7,17 +7,9 @@
              mc:Ignorable="d" >
     <DockPanel>
         <Menu DockPanel.Dock="Top" Background="AliceBlue">
-            
-            <MenuItem Header="Users">
-                <MenuItem Header="_Open" Command="{Binding OpenUserViewCommand}"/>
-                <MenuItem Header="_Close"/>
-                <MenuItem Header="_Save"/>
-            </MenuItem>
-            <MenuItem Header="Patients">
-                <MenuItem Header="_Open" Command="{Binding OpenPatientViewCommand}"/>
-                <MenuItem Header="_Close"/>
-                <MenuItem Header="_Save"/>
-            </MenuItem>
+
+            <MenuItem Header="Users" Command="{Binding OpenUserViewCommand}"/>
+            <MenuItem Header="Patients" Command="{Binding OpenPatientViewCommand}"/>
         </Menu>
         <StackPanel></StackPanel>
     </DockPanel>
